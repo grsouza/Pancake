@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -23,14 +23,22 @@ let package = Package(
         .target(
             name: "Pancake",
             dependencies: [
-            .target(name: "PancakeCore")
-        ]),
+                .target(name: "PancakeCore")
+            ]
+        ),
         .testTarget(
             name: "PancakeTests",
             dependencies: ["Pancake"]
         ),
         .target(name: "PancakeCore"),
-        .target(name: "PancakeCoreData")
+        .target(name: "PancakeCoreData"),
+        .testTarget(
+            name: "PancakeCoreDataTests",
+            dependencies: ["PancakeCoreData"],
+            resources: [
+                .process("Support Files")
+            ]
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
