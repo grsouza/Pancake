@@ -6,10 +6,19 @@ public protocol StorageKey {
     static var defaultValue: Value { get }
 }
 
+extension StorageKey {
+    fileprivate static var id: ObjectIdentifier {
+        ObjectIdentifier(self)
+    }
+}
+
 public final class Storage {
 
     private let lock = Lock.make()
     private var storage: [ObjectIdentifier: Any] = [:]
+
+    /// Storage's singleton
+    public static let global = Storage()
 
     public init() {}
 
@@ -20,7 +29,7 @@ public final class Storage {
 
     public func get<Key>(_ key: Key.Type) -> Key.Value where Key: StorageKey {
         lock.around {
-            guard let value = self.storage[ObjectIdentifier(Key.self)] as? Key.Value else {
+            guard let value = self.storage[key.id] as? Key.Value else {
                 return Key.defaultValue
             }
 
@@ -30,14 +39,13 @@ public final class Storage {
 
     public func set<Key>(_ key: Key.Type, to value: Key.Value?) where Key: StorageKey {
         lock.around {
-            let key = ObjectIdentifier(Key.self)
-            self.storage[key] = value
+            self.storage[key.id] = value
         }
     }
 
-    public func contains<Key>(_ key: Key.Type) -> Bool {
+    public func contains<Key>(_ key: Key.Type) -> Bool where Key: StorageKey {
         lock.around {
-            self.storage.keys.contains(ObjectIdentifier(Key.self))
+            self.storage.keys.contains(key.id)
         }
     }
 }
