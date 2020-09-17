@@ -16,6 +16,7 @@ let package = Package(
             name: "Pancake",
             targets: ["Pancake", "PancakeCore"]
         ),
+        .library(name: "PancakeCoreData", targets: ["PancakeCoreData"])
     ],
     dependencies: [],
     targets: [
@@ -28,7 +29,8 @@ let package = Package(
             name: "PancakeTests",
             dependencies: ["Pancake"]
         ),
-        .target(name: "PancakeCore")
+        .target(name: "PancakeCore"),
+        .target(name: "PancakeCoreData")
     ],
     swiftLanguageVersions: [.v5]
 )
