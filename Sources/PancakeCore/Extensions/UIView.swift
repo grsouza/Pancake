@@ -1,11 +1,4 @@
-//
-//  File.swift
-//  
-//
-//  Created by Guilherme Souza on 16/09/20.
-//
-
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 extension UIView {
