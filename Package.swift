@@ -9,21 +9,21 @@ let package = Package(
         .macOS(.v10_12),
         .iOS(.v10),
         .tvOS(.v10),
-        .watchOS(.v3)
+        .watchOS(.v3),
     ],
     products: [
         .library(
             name: "Pancake",
             targets: ["Pancake", "PancakeCore"]
         ),
-        .library(name: "PancakeCoreData", targets: ["PancakeCoreData"])
+        .library(name: "PancakeCoreData", targets: ["PancakeCoreData"]),
     ],
     dependencies: [],
     targets: [
         .target(
             name: "Pancake",
             dependencies: [
-                .target(name: "PancakeCore")
+                .target(name: "PancakeCore"),
             ]
         ),
         .testTarget(
