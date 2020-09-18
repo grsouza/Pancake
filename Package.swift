@@ -31,6 +31,7 @@ let package = Package(
             dependencies: ["Pancake"]
         ),
         .target(name: "PancakeCore"),
+        .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
         .target(name: "PancakeCoreData"),
 //        .testTarget(
 //            name: "PancakeCoreDataTests",
