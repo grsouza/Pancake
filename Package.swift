@@ -32,13 +32,13 @@ let package = Package(
         ),
         .target(name: "PancakeCore"),
         .target(name: "PancakeCoreData"),
-        .testTarget(
-            name: "PancakeCoreDataTests",
-            dependencies: ["PancakeCoreData"],
-            resources: [
-                .process("Support Files")
-            ]
-        )
+//        .testTarget(
+//            name: "PancakeCoreDataTests",
+//            dependencies: ["PancakeCoreData"],
+//            resources: [
+//                .process("Support Files")
+//            ]
+//        )
     ],
     swiftLanguageVersions: [.v5]
 )
