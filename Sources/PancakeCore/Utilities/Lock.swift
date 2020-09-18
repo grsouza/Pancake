@@ -111,9 +111,9 @@ public class Lock {
     /// - Returns: Returns `true` if the lock was succesfully locked and `false` if the lock was already locked.
     public func `try`() -> Bool { fatalError("Missing Implementation") }
 
-    public final func around<Result>(_ block: () throws -> Result) rethrows -> Result {
+    public final func around<Result>(_ criticalSection: () throws -> Result) rethrows -> Result {
         lock()
         defer { unlock() }
-        return try block()
+        return try criticalSection()
     }
 }
