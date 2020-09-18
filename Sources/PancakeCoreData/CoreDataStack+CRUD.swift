@@ -1,7 +1,6 @@
 import CoreData
 
 extension CoreDataStack {
-
     public typealias TransformClosure<Internal, External> = (Internal) throws -> External
     public typealias CreateClosure<Internal, External> = (NSManagedObjectContext) throws -> ([Internal], [External])
     public typealias UpdateClosure<Internal, External> = (Internal) throws -> External

@@ -2,7 +2,6 @@ import Foundation
 
 /// `Lock` exposes `os_unfair_lock` on supported platforms, with pthread mutex as the fallback (or for recursive locks).
 public class Lock {
-
     final class UnfairLock: Lock {
         private let _lock: os_unfair_lock_t
 
@@ -21,7 +20,7 @@ public class Lock {
         }
 
         override func `try`() -> Bool {
-            return os_unfair_lock_trylock(_lock)
+            os_unfair_lock_trylock(_lock)
         }
 
         deinit {

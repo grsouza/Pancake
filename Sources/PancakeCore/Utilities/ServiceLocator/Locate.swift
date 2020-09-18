@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Guilherme Souza on 18/09/20.
-//
-
 import Foundation
 
 @propertyWrapper
@@ -23,7 +16,6 @@ public struct Locate<Service> {
 
 @propertyWrapper
 public struct LazyLocate<Service> {
-
     public var name: ServiceLocator.Name?
     public var locator: ServiceLocator
 

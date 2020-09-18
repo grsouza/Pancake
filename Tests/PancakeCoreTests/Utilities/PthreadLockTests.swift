@@ -1,8 +1,7 @@
-import XCTest
 @testable import PancakeCore
+import XCTest
 
 class PthreadLockTestCase: XCTestCase {
-
     private var lock: Lock.PthreadLock!
     private var queue: DispatchQueue!
 
@@ -63,7 +62,7 @@ class PthreadLockTestCase: XCTestCase {
 
         wait(for: [lockExpectation], timeout: 1)
 
-        XCTAssertFalse(self.lock.try())
+        XCTAssertFalse(lock.try())
         sem.signal()
 
         wait(for: [unlockExpectation], timeout: 1)
@@ -92,7 +91,7 @@ class PthreadLockTestCase: XCTestCase {
             tryLockExpectation.fulfill()
         }
 
-        XCTAssertTrue(self.lock.try())
+        XCTAssertTrue(lock.try())
 
         waitForExpectations(timeout: 1)
 
@@ -106,7 +105,7 @@ class PthreadLockTestCase: XCTestCase {
         let writeExpectation = expectation(description: "write")
         writeExpectation.expectedFulfillmentCount = numWrites * numQueues
 
-        let queues: [OperationQueue] = (0..<numQueues).map { _ in
+        let queues: [OperationQueue] = (0 ..< numQueues).map { _ in
             let q = OperationQueue()
             q.isSuspended = true
             return q
@@ -114,7 +113,7 @@ class PthreadLockTestCase: XCTestCase {
 
         let box = MutableBox(0)
 
-        for _ in 1...numWrites {
+        for _ in 1 ... numWrites {
             queues.forEach {
                 $0.addOperation {
                     self.lock.lock()

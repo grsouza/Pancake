@@ -1,7 +1,6 @@
 import CoreData
 
 extension NSManagedObjectContext {
-
     public typealias ContextClosure<T> = () throws -> T
     public typealias ContextCompletionClosure<T> = (Result<T, Error>) -> Void
 
@@ -81,7 +80,6 @@ extension NSManagedObjectContext {
 // MARK: - Parent Coordinator & Store type
 
 extension NSManagedObjectContext {
-
     public var topLevelPersistentStoreCoordinator: NSPersistentStoreCoordinator? {
         switch (persistentStoreCoordinator, parent) {
         case (let persistentStoreCoordinator?, _):
@@ -94,7 +92,6 @@ extension NSManagedObjectContext {
     }
 
     public var isSQLiteStoreBased: Bool {
-
         switch topLevelPersistentStoreCoordinator?.firstStoreType {
         case .sqlite?:
             return true

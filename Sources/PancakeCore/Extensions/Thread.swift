@@ -1,7 +1,6 @@
 import Foundation
 
 extension Thread {
-
     /// Returns the name of the thread or 'main-thread', if it's the application's main thread
     public class var currentName: String {
         guard !isMainThread else {
@@ -14,5 +13,4 @@ extension Thread {
 
         return String(format: "%p", current)
     }
-
 }

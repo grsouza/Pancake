@@ -2,7 +2,6 @@
 import UIKit
 
 extension UIView {
-
     public var parentViewController: UIViewController? {
         weak var parentResponder: UIResponder? = self
         while parentResponder != nil {
@@ -13,6 +12,5 @@ extension UIView {
         }
         return nil
     }
-
 }
 #endif

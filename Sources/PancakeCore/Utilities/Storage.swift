@@ -13,7 +13,6 @@ extension StorageKey {
 }
 
 public final class Storage {
-
     private let lock = Lock.make()
     private var storage: [ObjectIdentifier: Any] = [:]
 

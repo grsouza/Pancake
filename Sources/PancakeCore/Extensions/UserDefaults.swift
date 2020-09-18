@@ -1,10 +1,9 @@
 import Foundation
 
 extension UserDefaults {
-
     public subscript(key: String) -> Any? {
         get {
-            return object(forKey: key)
+            object(forKey: key)
         }
         set {
             set(newValue, forKey: key)
@@ -12,11 +11,11 @@ extension UserDefaults {
     }
 
     public func float(forKey key: String) -> Float? {
-        return object(forKey: key) as? Float
+        object(forKey: key) as? Float
     }
 
     public func date(forKey key: String) -> Date? {
-        return object(forKey: key) as? Date
+        object(forKey: key) as? Date
     }
 
     public func object<T: Codable>(

@@ -1,6 +1,5 @@
 
 public final class ServiceLocator {
-
     public struct Name: RawRepresentable {
         public let rawValue: String
 
@@ -106,5 +105,4 @@ public final class ServiceLocator {
 
         return "\(metaType)"
     }
-
 }

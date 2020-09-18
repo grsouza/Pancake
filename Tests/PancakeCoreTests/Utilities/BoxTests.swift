@@ -1,10 +1,8 @@
-import XCTest
 @testable import PancakeCore
+import XCTest
 
 class BoxTestCase: XCTestCase {
-
     func testBox_ShouldWrapValue() {
-
         let value = 1337
         let box = Box<Int>(value)
 
@@ -12,7 +10,6 @@ class BoxTestCase: XCTestCase {
     }
 
     func testMutableBox_ShouldWrapValueAndAllowModifying() {
-
         let value = 1337
         let varBox = MutableBox<Int>(value)
 
