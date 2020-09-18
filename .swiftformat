@@ -1,0 +1,11 @@
+--binarygrouping none
+--decimalgrouping none 
+--hexgrouping none 
+--ifdef no-indent 
+--octalgrouping none 
+--patternlet inline 
+--semicolons never 
+--stripunusedargs closure-only 
+--wraparguments before-first 
+--wrapparameters before-first
+--header strip

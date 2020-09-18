@@ -1,7 +1,6 @@
 import Foundation
 
 extension Data {
-
     public var bytes: [UInt8] {
         [UInt8](self)
     }
@@ -11,7 +10,6 @@ extension Data {
     }
 
     public func jsonObject(options: JSONSerialization.ReadingOptions = []) throws -> Any {
-        return try JSONSerialization.jsonObject(with: self, options: options)
+        try JSONSerialization.jsonObject(with: self, options: options)
     }
-
 }

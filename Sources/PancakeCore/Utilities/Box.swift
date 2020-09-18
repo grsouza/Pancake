@@ -1,7 +1,6 @@
 import Foundation
 
 public final class Box<Value> {
-
     public let value: Value
 
     public init(_ value: Value) {
@@ -42,7 +41,6 @@ extension Box: Comparable where Value: Comparable {
 }
 
 public final class MutableBox<Value> {
-
     public var value: Value
 
     public init(_ value: Value) {

@@ -1,8 +1,7 @@
-import XCTest
 @testable import PancakeCore
+import XCTest
 
 final class ServiceLocatorTests: XCTestCase {
-
     func testRegisterAndResolveRefType() {
         let locator = ServiceLocator()
 
@@ -88,7 +87,6 @@ final class ServiceLocatorTests: XCTestCase {
         let otherInstance = locator.resolve(Foo.self) as! Bar
         XCTAssertEqual(otherInstance.value, 0)
     }
-
 }
 
 protocol Foo {}

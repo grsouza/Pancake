@@ -1,7 +1,6 @@
 import Foundation
 
 extension Array {
-
     /// Insert an element at the beginning of array.
     /// - Parameter newElement: Element to insert
     ///

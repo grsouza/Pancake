@@ -1,7 +1,6 @@
 import Foundation
 
 extension Optional {
-
     public func unwrap(
         or error: @autoclosure () -> Swift.Error
     ) throws -> Wrapped {
@@ -11,7 +10,6 @@ extension Optional {
 
         return wrapped
     }
-
 }
 
 extension Optional where Wrapped: Collection {

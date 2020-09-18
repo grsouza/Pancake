@@ -1,7 +1,6 @@
 import CoreData
 
 extension CoreDataStack {
-
     // MARK: NSPersistentContainer
 
     public static func makePersistentContainer(
@@ -36,10 +35,10 @@ extension NSPersistentStoreDescription {
         switch storeType {
         case .inMemory:
             self.init()
-            self.type = NSInMemoryStoreType
+            type = NSInMemoryStoreType
         case .sqlite(let url):
             self.init(url: url)
-            self.type = NSSQLiteStoreType
+            type = NSSQLiteStoreType
         }
     }
 }

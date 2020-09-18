@@ -1,6 +1,6 @@
 #if canImport(XCTest)
-import XCTest
 @testable import Pancake
+import XCTest
 
 final class PancakeTests: XCTestCase {
     func testExample() {

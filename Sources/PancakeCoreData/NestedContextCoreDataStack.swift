@@ -4,7 +4,7 @@ open class NestedContextCoreDataStack: CoreDataStack {
     private let backgroundContext: NSManagedObjectContext
     private let workContext: NSManagedObjectContext
 
-    public convenience required init(
+    public required convenience init(
         storeType: CoreDataStackStoreType,
         storeName: String,
         managedObjectModel: NSManagedObjectModel
@@ -60,7 +60,6 @@ open class NestedContextCoreDataStack: CoreDataStack {
 }
 
 extension NestedContextCoreDataStack {
-
     public static func makeBackgroundContext(
         storeType: CoreDataStackStoreType,
         storeName: String,
@@ -85,14 +84,13 @@ extension NestedContextCoreDataStack {
 }
 
 // MARK: MainQueue
-public final class MainQueueNestedContextCoreDataStack: NestedContextCoreDataStack {
 
+public final class MainQueueNestedContextCoreDataStack: NestedContextCoreDataStack {
     public required init(
         storeType: CoreDataStackStoreType,
         storeName: String,
         managedObjectModel: NSManagedObjectModel
     ) {
-
         super.init(
             storeType: storeType,
             storeName: storeName,
@@ -103,13 +101,13 @@ public final class MainQueueNestedContextCoreDataStack: NestedContextCoreDataSta
 }
 
 // MARK: PrivateQueue
+
 public typealias PrivateQueueNestedContextCoreDataStack = NestedContextCoreDataStack
 
 // MARK: Utils
+
 extension NSManagedObjectContextConcurrencyType {
-
     fileprivate var typeString: String {
-
         switch self {
         case .confinementConcurrencyType: return "confinement"
         case .mainQueueConcurrencyType: return "mainQueue"
