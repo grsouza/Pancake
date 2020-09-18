@@ -9,6 +9,20 @@ public final class Box<Value> {
     }
 }
 
+extension Box: Encodable where Value: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(value)
+    }
+}
+
+extension Box: Decodable where Value: Decodable {
+    public convenience init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.init(try container.decode(Value.self))
+    }
+}
+
 extension Box: Equatable where Value: Equatable {
     public static func == (lhs: Box<Value>, rhs: Box<Value>) -> Bool {
         lhs.value == rhs.value
@@ -51,5 +65,19 @@ extension MutableBox: Hashable where Value: Hashable {
 extension MutableBox: Comparable where Value: Comparable {
     public static func < (lhs: MutableBox<Value>, rhs: MutableBox<Value>) -> Bool {
         lhs.value < rhs.value
+    }
+}
+
+extension MutableBox: Encodable where Value: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(value)
+    }
+}
+
+extension MutableBox: Decodable where Value: Decodable {
+    public convenience init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.init(try container.decode(Value.self))
     }
 }
