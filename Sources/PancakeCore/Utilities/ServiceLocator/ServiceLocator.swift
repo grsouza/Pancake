@@ -33,7 +33,7 @@ public final class ServiceLocator {
         lock.around {
             precondition(
                 mutableState.factories[key] == nil,
-                "Service of type \(metaType) registered twice with the same key."
+                "Service of type '\(metaType)' registered twice with the key '\(key)'."
             )
             mutableState.factories[key] = factory
         }
