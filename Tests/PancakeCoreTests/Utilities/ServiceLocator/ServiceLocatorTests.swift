@@ -1,105 +1,105 @@
-@testable import PancakeCore
 import XCTest
+@testable import PancakeCore
 
 final class ServiceLocatorTests: XCTestCase {
-    func testRegisterAndResolveRefType() {
-        let locator = ServiceLocator()
+  func testRegisterAndResolveRefType() {
+    let locator = ServiceLocator()
 
-        let bar = Bar()
-        locator.register { bar as Foo }
+    let bar = Bar()
+    locator.register { bar as Foo }
 
-        let returned = locator.resolve(Foo.self) as! Bar
-        XCTAssertTrue(bar === returned)
+    let returned = locator.resolve(Foo.self) as! Bar
+    XCTAssertTrue(bar === returned)
+  }
+
+  func testRegisterAndResolveValueType() {
+    let locator = ServiceLocator()
+
+    let baz = Baz()
+    locator.register { baz as Foo }
+
+    let returned = locator.resolve(Foo.self) as! Baz
+    XCTAssertEqual(baz, returned)
+  }
+
+  func testFactoryShouldBeCalledOnlyOnce() {
+    let locator = ServiceLocator()
+
+    var count = 0
+    locator.register { () -> Foo in
+      count += 1
+      return Bar()
     }
 
-    func testRegisterAndResolveValueType() {
-        let locator = ServiceLocator()
+    let foo = locator.resolve(Foo.self) as! Bar
+    let foo2 = locator.resolve(Foo.self) as! Bar
 
-        let baz = Baz()
-        locator.register { baz as Foo }
+    XCTAssertEqual(count, 1)
+    XCTAssertTrue(foo === foo2)
+  }
 
-        let returned = locator.resolve(Foo.self) as! Baz
-        XCTAssertEqual(baz, returned)
-    }
+  func testResolvingTwiceShouldReturnSameObject() {
+    let locator = ServiceLocator()
+    locator.register { Bar() as Foo }
 
-    func testFactoryShouldBeCalledOnlyOnce() {
-        let locator = ServiceLocator()
+    let resolved1 = locator.resolve(Foo.self) as! Bar
+    let resolved2 = locator.resolve(Foo.self) as! Bar
 
-        var count = 0
-        locator.register { () -> Foo in
-            count += 1
-            return Bar()
-        }
+    XCTAssertTrue(resolved1 === resolved2)
+  }
 
-        let foo = locator.resolve(Foo.self) as! Bar
-        let foo2 = locator.resolve(Foo.self) as! Bar
+  func testResolvingNotRegisteredServiceShouldReturnNil() {
+    let locator = ServiceLocator()
+    XCTAssertNil(locator.optional(Foo.self))
+  }
 
-        XCTAssertEqual(count, 1)
-        XCTAssertTrue(foo === foo2)
-    }
+  func testRegisterWithName() {
+    let locator = ServiceLocator()
 
-    func testResolvingTwiceShouldReturnSameObject() {
-        let locator = ServiceLocator()
-        locator.register { Bar() as Foo }
+    let bar = Bar()
+    let foo = Bar()
+    locator.register(name: .bar) { bar as Foo }
+    locator.register(name: .foo) { foo as Foo }
 
-        let resolved1 = locator.resolve(Foo.self) as! Bar
-        let resolved2 = locator.resolve(Foo.self) as! Bar
+    let returnedBar = locator.resolve(Foo.self, name: .bar) as! Bar
+    let returnedFoo = locator.resolve(Foo.self, name: .foo) as! Bar
 
-        XCTAssertTrue(resolved1 === resolved2)
-    }
+    XCTAssertTrue(bar === returnedBar)
+    XCTAssertTrue(foo === returnedFoo)
+  }
 
-    func testResolvingNotRegisteredServiceShouldReturnNil() {
-        let locator = ServiceLocator()
-        XCTAssertNil(locator.optional(Foo.self))
-    }
+  func testStoreHoldsWeakReferenceOfInstance() {
+    let locator = ServiceLocator()
 
-    func testRegisterWithName() {
-        let locator = ServiceLocator()
+    locator.register { Bar() as Foo }
 
-        let bar = Bar()
-        let foo = Bar()
-        locator.register(name: .bar) { bar as Foo }
-        locator.register(name: .foo) { foo as Foo }
+    var instance = locator.resolve(Foo.self) as? Bar
+    var sameInstance = locator.resolve(Foo.self) as? Bar
 
-        let returnedBar = locator.resolve(Foo.self, name: .bar) as! Bar
-        let returnedFoo = locator.resolve(Foo.self, name: .foo) as! Bar
+    XCTAssertTrue(instance === sameInstance)
+    XCTAssertEqual(instance?.value, 0)
+    instance?.value = 1
+    XCTAssertEqual(instance?.value, 1)
 
-        XCTAssertTrue(bar === returnedBar)
-        XCTAssertTrue(foo === returnedFoo)
-    }
+    instance = nil
+    sameInstance = nil
 
-    func testStoreHoldsWeakReferenceOfInstance() {
-        let locator = ServiceLocator()
-
-        locator.register { Bar() as Foo }
-
-        var instance = locator.resolve(Foo.self) as? Bar
-        var sameInstance = locator.resolve(Foo.self) as? Bar
-
-        XCTAssertTrue(instance === sameInstance)
-        XCTAssertEqual(instance?.value, 0)
-        instance?.value = 1
-        XCTAssertEqual(instance?.value, 1)
-
-        instance = nil
-        sameInstance = nil
-
-        let otherInstance = locator.resolve(Foo.self) as! Bar
-        XCTAssertEqual(otherInstance.value, 0)
-    }
+    let otherInstance = locator.resolve(Foo.self) as! Bar
+    XCTAssertEqual(otherInstance.value, 0)
+  }
 }
 
 protocol Foo {}
 
 class Bar: Foo {
-    var value = 0
+  var value = 0
 }
 
 struct Baz: Foo, Equatable {
-    let id = UUID()
+  let id = UUID()
 }
 
 extension ServiceLocator.Name {
-    static let foo = ServiceLocator.Name(rawValue: "foo")
-    static let bar = ServiceLocator.Name(rawValue: "bar")
+  static let foo = ServiceLocator.Name(rawValue: "foo")
+  static let bar = ServiceLocator.Name(rawValue: "bar")
 }

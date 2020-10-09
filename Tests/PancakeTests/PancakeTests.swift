@@ -1,10 +1,10 @@
 #if canImport(XCTest)
-@testable import Pancake
 import XCTest
+@testable import Pancake
 
 final class PancakeTests: XCTestCase {
-    func testExample() {
-        XCTAssertEqual(Pancake().text, "Hello, World!")
-    }
+  func testExample() {
+    XCTAssertEqual(Pancake().text, "Hello, World!")
+  }
 }
 #endif
