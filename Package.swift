@@ -14,10 +14,10 @@ let package = Package(
       targets: ["Pancake", "PancakeCore"]
     ),
     .library(name: "PancakeUI", targets: ["PancakeUI"]),
-    .library(name: "PancakeHTTP", targets: ["PancakeCore", "PancakeHTTP"]),
   ],
   dependencies: [
     .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
+    .package(url: "https://github.com/ReactiveX/RxSwift", from: "5.0.0"),
   ],
   targets: [
     .target(
@@ -33,11 +33,11 @@ let package = Package(
     .target(name: "PancakeCore"),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
     .target(name: "PancakeUI", dependencies: [
-      "PancakeCore",
+      .target(name: "PancakeCore"),
       "TinyConstraints",
+      "RxSwift",
+      .product(name: "RxCocoa", package: "RxSwift"),
     ]),
-    .target(name: "PancakeHTTP"),
-    .testTarget(name: "PancakeHTTPTests", dependencies: ["PancakeHTTP"]),
   ],
   swiftLanguageVersions: [.v5]
 )
