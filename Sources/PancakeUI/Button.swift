@@ -24,12 +24,7 @@ open class Button: UIButton {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: Public
-
-  public let title: String?
-  public let onTouchUpInside: () -> Void
-
-  // MARK: Private
+  // MARK: Open
 
   open func setupStyle() {
     UIView.performWithoutAnimation {
@@ -41,5 +36,10 @@ open class Button: UIButton {
   open func didTouchUpInside() {
     onTouchUpInside()
   }
+
+  // MARK: Public
+
+  public let title: String?
+  public let onTouchUpInside: () -> Void
 
 }

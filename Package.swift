@@ -17,7 +17,7 @@ let package = Package(
     .library(name: "PancakeHTTP", targets: ["PancakeCore", "PancakeHTTP"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0")
+    .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
   ],
   targets: [
     .target(
@@ -33,8 +33,9 @@ let package = Package(
     .target(name: "PancakeCore"),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
     .target(name: "PancakeUI", dependencies: [
-              "PancakeCore",
-              "TinyConstraints"]),
+      "PancakeCore",
+      "TinyConstraints",
+    ]),
     .target(name: "PancakeHTTP"),
     .testTarget(name: "PancakeHTTPTests", dependencies: ["PancakeHTTP"]),
   ],

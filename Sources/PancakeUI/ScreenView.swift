@@ -27,7 +27,7 @@ public final class ScreenView: View {
     }
   }
 
-  // MARK: Open
+  // MARK: Public
 
   public override func configureSubviews() {
     super.configureSubviews()
