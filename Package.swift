@@ -6,19 +6,19 @@ import PackageDescription
 let package = Package(
   name: "Pancake",
   platforms: [
-    .macOS(.v10_12),
     .iOS(.v10),
-    .tvOS(.v10),
-    .watchOS(.v3),
   ],
   products: [
     .library(
       name: "Pancake",
       targets: ["Pancake", "PancakeCore"]
     ),
+    .library(name: "PancakeUI", targets: ["PancakeUI"]),
     .library(name: "PancakeHTTP", targets: ["PancakeCore", "PancakeHTTP"]),
   ],
-  dependencies: [],
+  dependencies: [
+    .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0")
+  ],
   targets: [
     .target(
       name: "Pancake",
@@ -32,6 +32,9 @@ let package = Package(
     ),
     .target(name: "PancakeCore"),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
+    .target(name: "PancakeUI", dependencies: [
+              "PancakeCore",
+              "TinyConstraints"]),
     .target(name: "PancakeHTTP"),
     .testTarget(name: "PancakeHTTPTests", dependencies: ["PancakeHTTP"]),
   ],
