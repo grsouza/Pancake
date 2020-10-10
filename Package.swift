@@ -17,7 +17,6 @@ let package = Package(
       targets: ["Pancake", "PancakeCore"]
     ),
     .library(name: "PancakeHTTP", targets: ["PancakeCore", "PancakeHTTP"]),
-    .library(name: "PancakeCoreData", targets: ["PancakeCoreData"]),
   ],
   dependencies: [],
   targets: [
@@ -33,7 +32,6 @@ let package = Package(
     ),
     .target(name: "PancakeCore"),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
-    .target(name: "PancakeCoreData"),
     .target(name: "PancakeHTTP"),
     .testTarget(name: "PancakeHTTPTests", dependencies: ["PancakeHTTP"]),
   ],
