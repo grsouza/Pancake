@@ -1,11 +1,11 @@
 import CoreData
 
 public protocol ManagedObjectReflectable {
-    associatedtype ManagedObject: NSManagedObject
+  associatedtype ManagedObject: NSManagedObject
 
-    func reflect(to managedObject: ManagedObject)
+  func reflect(to managedObject: ManagedObject)
 
-    init(managedObject: ManagedObject)
+  init(managedObject: ManagedObject)
 
-    static func filter(_ managedObjects: [ManagedObject], from reflections: [Self]) -> [Self]
+  static func filter(_ managedObjects: [ManagedObject], from reflections: [Self]) -> [Self]
 }
