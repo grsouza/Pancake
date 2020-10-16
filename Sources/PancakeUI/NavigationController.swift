@@ -1,14 +1,19 @@
 import UIKit
 
-final class NavigationController: UINavigationController {
+open class NavigationController: UINavigationController {
 
-  var didFinish: (() -> Void)?
+  // MARK: Open
 
-  override func viewDidDisappear(_ animated: Bool) {
+  open override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
 
     if isBeingDismissed || isMovingFromParent {
       didFinish?()
     }
   }
+
+  // MARK: Public
+
+  public var didFinish: (() -> Void)?
+
 }

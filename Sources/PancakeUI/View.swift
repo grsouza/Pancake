@@ -29,8 +29,6 @@ open class View: UIView {
 
   // MARK: Public
 
-  public lazy var disposeBag = DisposeBag()
-
   @discardableResult
   public func onKeyboardAppear(_ action: @escaping (CGRect) -> Void) -> Self {
     if !keyboardNotificationAdded {
@@ -60,28 +58,39 @@ open class View: UIView {
   private func setupKeyboardNotifications() {
     keyboardNotificationAdded = true
 
-    NotificationCenter.default.rx
-      .notification(UIApplication.keyboardWillShowNotification)
-      .compactMap { notification in
-        (notification.userInfo?[UIApplication.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-      }
-      .subscribe(onNext: { [weak self] keyboardFrame in
-        self?.onKeyboardAppearActions.forEach {
-          $0(keyboardFrame)
-        }
-      })
-      .disposed(by: disposeBag)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(keyboardWillShow),
+      name: UIApplication.keyboardWillShowNotification,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(keyboardWillShow),
+      name: UIApplication.keyboardWillHideNotification,
+      object: nil
+    )
+  }
 
-    NotificationCenter.default.rx
-      .notification(UIApplication.keyboardWillHideNotification)
-      .compactMap { notification in
-        (notification.userInfo?[UIApplication.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
-      }
-      .subscribe(onNext: { [weak self] keyboardFrame in
-        self?.onKeyboardDisappearActions.forEach {
-          $0(keyboardFrame)
-        }
-      })
-      .disposed(by: disposeBag)
+  @objc
+  private func keyboardWillShow(_ notification: Notification) {
+    guard let keyboardFrame = (notification.userInfo?[UIApplication.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+      return
+    }
+
+    onKeyboardAppearActions.forEach {
+      $0(keyboardFrame)
+    }
+  }
+
+  @objc
+  private func keyboardWillHide(_ notification: Notification) {
+    guard let keyboardFrame = (notification.userInfo?[UIApplication.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
+      return
+    }
+
+    onKeyboardDisappearActions.forEach {
+      $0(keyboardFrame)
+    }
   }
 }

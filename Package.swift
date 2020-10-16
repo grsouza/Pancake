@@ -17,7 +17,6 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
-    .package(url: "https://github.com/ReactiveX/RxSwift", from: "5.0.0"),
   ],
   targets: [
     .target(
@@ -35,8 +34,6 @@ let package = Package(
     .target(name: "PancakeUI", dependencies: [
       .target(name: "PancakeCore"),
       "TinyConstraints",
-      "RxSwift",
-      .product(name: "RxCocoa", package: "RxSwift"),
     ]),
   ],
   swiftLanguageVersions: [.v5]
