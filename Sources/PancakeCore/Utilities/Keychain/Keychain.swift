@@ -265,8 +265,8 @@ public final class Keychain {
   @discardableResult
   public func removeObject(
     forKey key: String,
-    withAccessibility accessibility: ItemAccessibility?,
-    isSynchronizable: Bool
+    withAccessibility accessibility: ItemAccessibility? = nil,
+    isSynchronizable: Bool = false
   ) -> Bool {
     let queryDictionary = makeQueryDictionary(
       forKey: key,
