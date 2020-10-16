@@ -92,7 +92,10 @@ public class Lock {
         attr.deallocate()
       }
 
-      pthread_mutexattr_settype(attr, Int32(recursive ? PTHREAD_MUTEX_RECURSIVE : PTHREAD_MUTEX_ERRORCHECK))
+      pthread_mutexattr_settype(
+        attr,
+        Int32(recursive ? PTHREAD_MUTEX_RECURSIVE : PTHREAD_MUTEX_ERRORCHECK)
+      )
 
       let status = pthread_mutex_init(_lock, attr)
       assert(status == 0, "Unexpected pthread mutex error code: \(status)")

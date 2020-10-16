@@ -29,7 +29,7 @@ public final class HStack: View {
 
   // MARK: Private
 
-  private let stackView = with(UIStackView()) {
+  private let stackView = UIStackView().with {
     $0.axis = .horizontal
   }
 
@@ -71,7 +71,7 @@ public final class VStack: View {
 
   // MARK: Private
 
-  private let stackView = with(UIStackView()) {
+  private let stackView = UIStackView().with {
     $0.axis = .vertical
   }
 
