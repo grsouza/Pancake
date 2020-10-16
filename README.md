@@ -2,4 +2,4 @@
 
 ![CI](https://github.com/grsouza/Pancake/workflows/CI/badge.svg)
 
-A description of this package.
+Set of helper extensions and utilities for easier iOS and Swift development.
