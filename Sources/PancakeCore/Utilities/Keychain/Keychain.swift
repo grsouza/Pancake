@@ -21,7 +21,7 @@ public final class Keychain {
   private(set) public var accessGroup: String?
 
   public func integer(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Int? {
@@ -37,7 +37,7 @@ public final class Keychain {
   }
 
   public func float(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Float? {
@@ -53,7 +53,7 @@ public final class Keychain {
   }
 
   public func double(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Double? {
@@ -69,7 +69,7 @@ public final class Keychain {
   }
 
   public func bool(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool? {
@@ -85,7 +85,7 @@ public final class Keychain {
   }
 
   public func string(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> String? {
@@ -101,7 +101,7 @@ public final class Keychain {
   }
 
   public func object(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> NSCoding? {
@@ -117,7 +117,7 @@ public final class Keychain {
   }
 
   public func data(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Data? {
@@ -139,7 +139,7 @@ public final class Keychain {
   @discardableResult
   public func set(
     _ value: Int,
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool {
@@ -154,7 +154,7 @@ public final class Keychain {
   @discardableResult
   public func set(
     _ value: Float,
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool {
@@ -169,7 +169,7 @@ public final class Keychain {
   @discardableResult
   public func set(
     _ value: Double,
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool {
@@ -184,7 +184,7 @@ public final class Keychain {
   @discardableResult
   public func set(
     _ value: Bool,
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool {
@@ -199,7 +199,7 @@ public final class Keychain {
   @discardableResult
   public func set(
     _ value: String,
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool {
@@ -216,7 +216,7 @@ public final class Keychain {
   @discardableResult
   public func set(
     _ value: NSCoding,
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool {
@@ -232,7 +232,7 @@ public final class Keychain {
   @discardableResult
   public func set(
     _ data: Data,
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool {
@@ -264,7 +264,7 @@ public final class Keychain {
 
   @discardableResult
   public func removeObject(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool {
@@ -281,7 +281,7 @@ public final class Keychain {
 
   public func update(
     _ data: Data,
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility?,
     isSynchronizable: Bool
   ) -> Bool {
@@ -305,7 +305,7 @@ public final class Keychain {
   }()
 
   private func makeQueryDictionary(
-    forKey key: String,
+    forKey key: Key,
     withAccessibility accessibility: ItemAccessibility?,
     isSynchronizable: Bool
   ) -> [CFString: Any] {
@@ -320,12 +320,27 @@ public final class Keychain {
       queryDictionary[kSecAttrAccessGroup] = accessGroup
     }
 
-    let identifier = key.data(using: .utf8)
+    let identifier = key.rawValue.data(using: .utf8)
     queryDictionary[kSecAttrGeneric] = identifier
     queryDictionary[kSecAttrAccount] = identifier
 
     queryDictionary[kSecAttrSynchronizable] = isSynchronizable ? kCFBooleanTrue : kCFBooleanFalse
 
     return queryDictionary
+  }
+}
+
+extension Keychain {
+
+  public struct Key: Hashable, RawRepresentable, ExpressibleByStringLiteral {
+    public let rawValue: String
+
+    public init(rawValue: String) {
+      self.rawValue = rawValue
+    }
+
+    public init(stringLiteral value: String) {
+      rawValue = value
+    }
   }
 }

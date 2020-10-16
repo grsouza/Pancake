@@ -47,7 +47,7 @@ public struct KeychainStored<Value> {
 
 extension KeychainStored where Value == Int {
   public init(
-    key: String,
+    key: Keychain.Key,
     accessibility: Keychain.ItemAccessibility? = nil,
     isSynchronizable: Bool = false,
     in keychain: Keychain = Keychain.standard
@@ -79,7 +79,7 @@ extension KeychainStored where Value == Int {
 
 extension KeychainStored where Value == Float {
   public init(
-    key: String,
+    key: Keychain.Key,
     accessibility: Keychain.ItemAccessibility? = nil,
     isSynchronizable: Bool = false,
     in keychain: Keychain = Keychain.standard
@@ -111,7 +111,7 @@ extension KeychainStored where Value == Float {
 
 extension KeychainStored where Value == Double {
   public init(
-    key: String,
+    key: Keychain.Key,
     accessibility: Keychain.ItemAccessibility? = nil,
     isSynchronizable: Bool = false,
     in keychain: Keychain = Keychain.standard
@@ -143,7 +143,7 @@ extension KeychainStored where Value == Double {
 
 extension KeychainStored where Value == String {
   public init(
-    key: String,
+    key: Keychain.Key,
     accessibility: Keychain.ItemAccessibility? = nil,
     isSynchronizable: Bool = false,
     in keychain: Keychain = Keychain.standard
@@ -175,7 +175,7 @@ extension KeychainStored where Value == String {
 
 extension KeychainStored where Value == Data {
   public init(
-    key: String,
+    key: Keychain.Key,
     accessibility: Keychain.ItemAccessibility? = nil,
     isSynchronizable: Bool = false,
     in keychain: Keychain = Keychain.standard
@@ -207,7 +207,7 @@ extension KeychainStored where Value == Data {
 
 extension KeychainStored where Value: NSCoding {
   public init(
-    key: String,
+    key: Keychain.Key,
     accessibility: Keychain.ItemAccessibility? = nil,
     isSynchronizable: Bool = false,
     in keychain: Keychain = Keychain.standard
@@ -239,12 +239,12 @@ extension KeychainStored where Value: NSCoding {
 
 extension KeychainStored where Value: Codable {
   public init(
-    key: String,
+    key: Keychain.Key,
     accessibility: Keychain.ItemAccessibility? = nil,
     isSynchronizable: Bool = false,
     in keychain: Keychain = Keychain.standard,
     decoder: JSONDecoder = JSONDecoder(),
-    encoder: JSONEncoder = JSONEncoder(),
+    encoder: JSONEncoder = JSONEncoder()
   ) {
     self.init(
       getter: {
