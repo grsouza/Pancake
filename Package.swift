@@ -7,28 +7,20 @@ let package = Package(
   name: "Pancake",
   platforms: [
     .iOS(.v10),
+    .macOS(.v10_11),
   ],
   products: [
     .library(
       name: "Pancake",
-      targets: ["Pancake", "PancakeCore"]
+      targets: ["PancakeCore", "PancakeUI"]
     ),
+    .library(name: "PancakeCore", targets: ["PancakeCore"]),
     .library(name: "PancakeUI", targets: ["PancakeUI"]),
   ],
   dependencies: [
     .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
   ],
   targets: [
-    .target(
-      name: "Pancake",
-      dependencies: [
-        .target(name: "PancakeCore"),
-      ]
-    ),
-    .testTarget(
-      name: "PancakeTests",
-      dependencies: ["Pancake"]
-    ),
     .target(name: "PancakeCore"),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
     .target(name: "PancakeUI", dependencies: [
