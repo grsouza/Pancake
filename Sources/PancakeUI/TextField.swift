@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class TextField: View {
@@ -103,3 +104,4 @@ extension TextField {
     case `default`, email, password, money
   }
 }
+#endif

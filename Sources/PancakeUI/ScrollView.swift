@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class ScrollView: View {
@@ -32,3 +33,4 @@ public final class ScrollView: View {
 
   private let scrollView: UIScrollView
 }
+#endif

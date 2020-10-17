@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class ScreenView: View {
@@ -48,3 +49,4 @@ public final class ScreenView: View {
   private var bottomConstraint: NSLayoutConstraint?
 
 }
+#endif

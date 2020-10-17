@@ -13,7 +13,7 @@ public class Lock {
   ///
   /// - returns: a `Lock` instance
   public static func make() -> Lock {
-    if #available(*, iOS 10.0) {
+    if #available(*, macOS 10.12) {
       return UnfairLock()
     }
 
@@ -39,6 +39,7 @@ public class Lock {
 
   // MARK: Internal
 
+  @available(OSX 10.12, *)
   final class UnfairLock: Lock {
 
     // MARK: Lifecycle

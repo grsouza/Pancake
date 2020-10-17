@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class Padding: View {
@@ -12,3 +13,4 @@ public final class Padding: View {
     view.edgesToSuperview(insets: insets)
   }
 }
+#endif

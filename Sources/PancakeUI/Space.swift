@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class Space: View {
@@ -14,3 +15,4 @@ public final class Space: View {
     }
   }
 }
+#endif

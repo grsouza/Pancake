@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class Blur: View {
@@ -32,3 +33,4 @@ public final class Blur: View {
   private let effect: UIBlurEffect
   private lazy var blurEffectView = UIVisualEffectView(effect: effect)
 }
+#endif

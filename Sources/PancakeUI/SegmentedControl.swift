@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class SegmentedControl<Element>: View where Element: Equatable {
@@ -63,3 +64,4 @@ public final class SegmentedControl<Element>: View where Element: Equatable {
   }
 
 }
+#endif

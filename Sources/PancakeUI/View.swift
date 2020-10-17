@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 open class View: UIView {
@@ -94,3 +95,4 @@ open class View: UIView {
     }
   }
 }
+#endif

@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class SafeArea: View {
@@ -11,3 +12,4 @@ public final class SafeArea: View {
     view.edgesToSuperview(usingSafeArea: true)
   }
 }
+#endif

@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public final class HStack: View {
@@ -76,3 +77,4 @@ public final class VStack: View {
   }
 
 }
+#endif

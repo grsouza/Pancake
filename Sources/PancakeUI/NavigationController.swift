@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 open class NavigationController: UINavigationController {
@@ -17,3 +18,4 @@ open class NavigationController: UINavigationController {
   public var didFinish: (() -> Void)?
 
 }
+#endif

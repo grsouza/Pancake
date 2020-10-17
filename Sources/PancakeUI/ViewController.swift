@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 open class ViewController: UIViewController {
@@ -33,3 +34,4 @@ open class ViewController: UIViewController {
   var didFinish: (() -> Void)?
 
 }
+#endif

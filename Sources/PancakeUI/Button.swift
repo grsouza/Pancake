@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 open class Button: UIButton {
@@ -43,3 +44,4 @@ open class Button: UIButton {
   public let onTouchUpInside: () -> Void
 
 }
+#endif

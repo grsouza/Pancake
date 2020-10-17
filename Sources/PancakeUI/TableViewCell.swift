@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 open class TableViewCell: UITableViewCell {
@@ -26,3 +27,4 @@ open class TableViewCell: UITableViewCell {
   func additionalConfigurations() {}
 
 }
+#endif
