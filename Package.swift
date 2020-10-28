@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
   name: "Pancake",
   platforms: [
-    .iOS(.v10),
+    .iOS(.v11),
     .macOS(.v10_11),
   ],
   products: [
