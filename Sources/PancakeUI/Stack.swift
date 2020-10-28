@@ -7,11 +7,15 @@ public final class HStack: View {
 
   public init(
     spacing: CGFloat,
+    alignment: UIStackView.Alignment = .fill,
+    distribution: UIStackView.Distribution = .fill,
     _ views: [UIView]
   ) {
     super.init()
 
     stackView.spacing = spacing
+    stackView.alignment = alignment
+    stackView.distribution = distribution
 
     views.forEach {
       stackView.addArrangedSubview($0)
@@ -23,9 +27,25 @@ public final class HStack: View {
 
   public convenience init(
     spacing: CGFloat,
+    alignment: UIStackView.Alignment = .fill,
+    distribution: UIStackView.Distribution = .fill,
     _ views: UIView...
   ) {
-    self.init(spacing: spacing, views)
+    self.init(spacing: spacing, alignment: alignment, distribution: distribution, views)
+  }
+
+  public convenience init(
+    spacing: CGFloat,
+    alignment: UIStackView.Alignment = .fill,
+    distribution: UIStackView.Distribution = .fill,
+    _ views: UIView?...
+  ) {
+    self.init(
+      spacing: spacing,
+      alignment: alignment,
+      distribution: distribution,
+      views.compactMap { $0 }
+    )
   }
 
   // MARK: Private
@@ -42,11 +62,15 @@ public final class VStack: View {
 
   public init(
     spacing: CGFloat,
+    alignment: UIStackView.Alignment = .fill,
+    distribution: UIStackView.Distribution = .fill,
     _ views: [UIView]
   ) {
     super.init()
 
     stackView.spacing = spacing
+    stackView.alignment = alignment
+    stackView.distribution = distribution
 
     views.forEach {
       stackView.addArrangedSubview($0)
@@ -58,16 +82,25 @@ public final class VStack: View {
 
   public convenience init(
     spacing: CGFloat,
+    alignment: UIStackView.Alignment = .fill,
+    distribution: UIStackView.Distribution = .fill,
     _ views: UIView...
   ) {
-    self.init(spacing: spacing, views)
+    self.init(spacing: spacing, alignment: alignment, distribution: distribution, views)
   }
 
   public convenience init(
     spacing: CGFloat,
+    alignment: UIStackView.Alignment = .fill,
+    distribution: UIStackView.Distribution = .fill,
     _ views: UIView?...
   ) {
-    self.init(spacing: spacing, views.compactMap { $0 })
+    self.init(
+      spacing: spacing,
+      alignment: alignment,
+      distribution: distribution,
+      views.compactMap { $0 }
+    )
   }
 
   // MARK: Private
