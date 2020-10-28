@@ -5,7 +5,7 @@ public final class Blur: View {
 
   // MARK: Lifecycle
 
-  init(
+  public init(
     style: UIBlurEffect.Style = .prominent,
     _ childView: UIView
   ) {
