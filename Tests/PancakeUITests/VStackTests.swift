@@ -25,4 +25,39 @@ final class VStackTests: XCTestCase {
 
     assertSnapshot(matching: stack, as: .image)
   }
+
+  func testVStackCustomAlignment() {
+    let view1 = UIView().with {
+      $0.width(100)
+      $0.height(32)
+      $0.backgroundColor = .darkGray
+    }
+
+    let view2 = UIView().with {
+      $0.width(80)
+      $0.height(32)
+      $0.backgroundColor = .darkGray
+    }
+
+    let view3 = UIView().with {
+      $0.width(120)
+      $0.height(32)
+      $0.backgroundColor = .darkGray
+    }
+
+    let alignments: [UIStackView.Alignment] = [.leading, .center, .trailing]
+
+    for alignment in alignments {
+      let stack = VStack(
+        spacing: 10,
+        alignment: alignment,
+        view1, view2, view3
+      ).with {
+        $0.width(256)
+        $0.backgroundColor = .white
+      }
+
+      assertSnapshot(matching: stack, as: .image)
+    }
+  }
 }
