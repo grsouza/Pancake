@@ -5,7 +5,7 @@ open class ViewController: UIViewController {
 
   // MARK: Lifecycle
 
-  init() {
+  public init() {
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -29,9 +29,9 @@ open class ViewController: UIViewController {
     }
   }
 
-  // MARK: Internal
+  // MARK: Public
 
-  var didFinish: (() -> Void)?
+  public var didFinish: (() -> Void)?
 
 }
 #endif
