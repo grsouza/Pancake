@@ -57,7 +57,7 @@ final class HStackTests: XCTestCase {
         $0.backgroundColor = .white
       }
 
-      assertSnapshot(matching: stack, as: .image)
+      assertSnapshot(matching: stack, as: .image, named: alignment.debugDescription)
     }
   }
 }

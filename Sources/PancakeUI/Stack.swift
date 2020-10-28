@@ -110,4 +110,18 @@ public final class VStack: View {
   }
 
 }
+
+extension UIStackView.Alignment: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    switch self {
+    case .fill: return "fill"
+    case .leading: return "leading"
+    case .firstBaseline: return "firstBaseline"
+    case .center: return "center"
+    case .trailing: return "trailing"
+    case .lastBaseline: return "lastBaseline"
+    @unknown default: return "unknown"
+    }
+  }
+}
 #endif

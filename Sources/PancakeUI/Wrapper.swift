@@ -54,4 +54,37 @@ public final class Wrapper: View {
   }
 
 }
+
+extension Wrapper.Alignment: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    var values: [String] = []
+
+    if contains(.top) {
+      values.append("top")
+    }
+
+    if contains(.trailing) {
+      values.append("trailing")
+    }
+
+    if contains(.bottom) {
+      values.append("bottom")
+    }
+
+    if contains(.leading) {
+      values.append("leading")
+    }
+
+    if contains(.centerX) {
+      values.append("centerX")
+    }
+
+    if contains(.centerY) {
+      values.append("centerY")
+    }
+
+    return values.joined(separator: "-")
+  }
+}
+
 #endif

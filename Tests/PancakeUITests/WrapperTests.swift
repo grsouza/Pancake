@@ -34,7 +34,7 @@ final class WrapperTests: XCTestCase {
         $0.backgroundColor = .white
       }
 
-      assertSnapshot(matching: wrapper, as: .image)
+      assertSnapshot(matching: wrapper, as: .image, named: alignment.debugDescription)
     }
   }
 
