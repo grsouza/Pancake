@@ -7,7 +7,6 @@ let package = Package(
   name: "Pancake",
   platforms: [
     .iOS(.v11),
-    .macOS(.v10_11),
   ],
   products: [
     .library(

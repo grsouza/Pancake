@@ -1,16 +1,23 @@
 import Foundation
 
-public final class Weak<Value: AnyObject> {
+public final class Weak<Value> {
 
   // MARK: Lifecycle
 
-  public init(_ value: Value) {
+  public init(_ value: Value? = nil) {
     self.value = value
   }
 
   // MARK: Public
 
-  public weak var value: Value?
+  public var value: Value? {
+    get { _value as? Value }
+    set { _value = newValue as AnyObject }
+  }
+
+  // MARK: Private
+
+  private weak var _value: AnyObject?
 
 }
 
