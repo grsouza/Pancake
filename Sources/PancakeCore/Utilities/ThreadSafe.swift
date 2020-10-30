@@ -11,20 +11,24 @@ public final class ThreadSafe<Value> {
   // MARK: Public
 
   public func read<Result>(_ block: (Value) throws -> Result) rethrows -> Result {
-    try lock.around {
+    try queue.sync {
       try block(value)
     }
   }
 
   public func write<Result>(_ block: (inout Value) throws -> Result) rethrows -> Result {
-    try lock.around {
+    try queue.sync(flags: .barrier) {
       try block(&value)
     }
   }
 
   // MARK: Private
 
-  private let lock = Lock.make()
+  private let queue = DispatchQueue(
+    label: "dev.grds.pancakecore.threadsafe",
+    qos: .utility,
+    attributes: .concurrent
+  )
   private var value: Value
 
 }
