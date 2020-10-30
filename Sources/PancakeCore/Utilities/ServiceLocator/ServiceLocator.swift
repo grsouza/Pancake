@@ -50,12 +50,12 @@ public final class ServiceLocator {
   ) {
     let key = makeKey(forMetaType: metaType, name: name?.rawValue)
 
-    lock.around {
+    mutableState.write {
       precondition(
-        mutableState.factories[key] == nil,
+        $0.factories[key] == nil,
         "Service of type '\(metaType)' registered twice with the key '\(key)'."
       )
-      mutableState.factories[key] = factory
+      $0.factories[key] = factory
     }
   }
 
@@ -78,14 +78,14 @@ public final class ServiceLocator {
   ) -> Service? {
     let key = makeKey(forMetaType: metaType, name: name?.rawValue)
 
-    return lock.around {
-      if let instance = mutableState.instances[key]?.value as? Service {
+    return mutableState.write {
+      if let instance = $0.instances[key]?.value as? Service {
         return instance
       }
 
-      if let factory = mutableState.factories[key] as? Factory<Service> {
+      if let factory = $0.factories[key] as? Factory<Service> {
         let instance = factory()
-        mutableState.instances[key] = Weak(instance as AnyObject)
+        $0.instances[key] = Weak(instance as AnyObject)
         return instance
       }
 
@@ -100,8 +100,7 @@ public final class ServiceLocator {
     var instances: [String: Weak<AnyObject>] = [:]
   }
 
-  private let lock = Lock.make()
-  private var mutableState = MutableState()
+  private var mutableState = ThreadSafe<MutableState>(value: MutableState())
 
   // MARK: - Private Methods
 

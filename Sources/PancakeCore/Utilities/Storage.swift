@@ -29,8 +29,8 @@ public final class Storage {
   }
 
   public func get<Key>(_ key: Key.Type) -> Key.Value where Key: StorageKey {
-    lock.around {
-      guard let value = self.storage[key.id] as? Key.Value else {
+    storage.read {
+      guard let value = $0[key.id] as? Key.Value else {
         return Key.defaultValue
       }
 
@@ -39,20 +39,19 @@ public final class Storage {
   }
 
   public func set<Key>(_ key: Key.Type, to value: Key.Value?) where Key: StorageKey {
-    lock.around {
-      self.storage[key.id] = value
+    storage.write {
+      $0[key.id] = value
     }
   }
 
   public func contains<Key>(_ key: Key.Type) -> Bool where Key: StorageKey {
-    lock.around {
-      self.storage.keys.contains(key.id)
+    storage.read {
+      $0.keys.contains(key.id)
     }
   }
 
   // MARK: Private
 
-  private let lock = Lock.make()
-  private var storage: [ObjectIdentifier: Any] = [:]
+  private var storage = ThreadSafe<[ObjectIdentifier: Any]>(value: [:])
 
 }
