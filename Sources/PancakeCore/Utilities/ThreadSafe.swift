@@ -1,5 +1,9 @@
 import Foundation
 
+/// Wraps value in a thread safe environemnt.
+///
+/// Read and write are made throught methods that are synchronized.
+/// Reads are concurrent and writes are exclusive.
 public final class ThreadSafe<Value> {
 
   // MARK: Lifecycle
