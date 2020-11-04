@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import PancakeUI
 import SnapshotTesting
 import UIKit
@@ -39,3 +40,4 @@ final class WrapperTests: XCTestCase {
   }
 
 }
+#endif
