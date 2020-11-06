@@ -67,7 +67,7 @@ open class View: UIView {
     )
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(keyboardWillShow),
+      selector: #selector(keyboardWillHide),
       name: UIApplication.keyboardWillHideNotification,
       object: nil
     )
