@@ -57,10 +57,10 @@ public final class TextField: View {
     switch contentType {
     case .email: return .emailAddress
     case .password: if #available(iOS 11.0, *) {
-      return .password
-    } else {
-      return nil
-    }
+        return .password
+      } else {
+        return nil
+      }
     case .money, .default: return nil
     }
   }
