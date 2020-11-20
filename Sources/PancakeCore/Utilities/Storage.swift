@@ -22,7 +22,7 @@ public final class Storage {
   // MARK: Public
 
   /// Storage's singleton
-  public static let global = Storage()
+  public static var global = Storage()
 
   public subscript<Key>(_ key: Key.Type) -> Key.Value where Key: StorageKey {
     get { get(key) }
@@ -31,7 +31,12 @@ public final class Storage {
 
   public func get<Key>(_ key: Key.Type) -> Key.Value where Key: StorageKey {
     storage.read {
-      guard let value = $0[key.id] as? Key.Value else {
+      guard let value = $0[key.id] else {
+        return Key.defaultValue
+      }
+
+      guard let typedValue = value  as? Key.Value else {
+        assertionFailure("unexpected typed value: \(value)")
         return Key.defaultValue
       }
 
