@@ -16,6 +16,7 @@ let package = Package(
     ),
     .library(name: "PancakeCore", targets: ["PancakeCore"]),
     .library(name: "PancakeUI", targets: ["PancakeUI"]),
+    .library(name: "PancakeKeychain", targets: ["PancakeKeychain"]),
   ],
   dependencies: [
     .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
@@ -28,6 +29,7 @@ let package = Package(
   targets: [
     .target(name: "PancakeCore"),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
+    .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
     .target(name: "PancakeUI", dependencies: [
       .target(name: "PancakeCore"),
       "TinyConstraints",

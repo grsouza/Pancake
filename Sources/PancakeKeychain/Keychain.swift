@@ -1,4 +1,5 @@
 import Foundation
+import PancakeCore
 
 public final class Keychain {
 
@@ -14,6 +15,14 @@ public final class Keychain {
   }
 
   // MARK: Public
+
+  public struct Key: Hashable, RawRepresentable {
+    public let rawValue: String
+
+    public init(rawValue: String) {
+      self.rawValue = rawValue
+    }
+  }
 
   public static let standard = Keychain()
 
@@ -301,7 +310,7 @@ public final class Keychain {
   // MARK: Private
 
   private static let defaultKeychainServiceName: String = {
-    Bundle.main.bundleIdentifier ?? "dev.grds.pancakecore.keychain"
+    Bundle.main.bundleIdentifier ?? "dev.grds.pancakekeychain"
   }()
 
   private func makeQueryDictionary(
@@ -327,16 +336,5 @@ public final class Keychain {
     queryDictionary[kSecAttrSynchronizable] = isSynchronizable ? kCFBooleanTrue : kCFBooleanFalse
 
     return queryDictionary
-  }
-}
-
-extension Keychain {
-
-  public struct Key: Hashable, RawRepresentable {
-    public let rawValue: String
-
-    public init(rawValue: String) {
-      self.rawValue = rawValue
-    }
   }
 }
