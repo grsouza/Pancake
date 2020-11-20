@@ -12,13 +12,18 @@ let package = Package(
   products: [
     .library(
       name: "Pancake",
-      targets: ["PancakeCore", "PancakeUI"]
+      targets: ["PancakeCore", "PancakeUI", "PancakeKeychain"]
     ),
     .library(name: "PancakeCore", targets: ["PancakeCore"]),
     .library(name: "PancakeUI", targets: ["PancakeUI"]),
     .library(name: "PancakeKeychain", targets: ["PancakeKeychain"]),
   ],
   dependencies: [
+    .package(
+      name: "ThreadSafe",
+      url: "https://github.com/grsouza/swift-threadsafe.git",
+      from: "1.0.0"
+    ),
     .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
     .package(
       name: "SnapshotTesting",
@@ -27,7 +32,7 @@ let package = Package(
     ),
   ],
   targets: [
-    .target(name: "PancakeCore"),
+    .target(name: "PancakeCore", dependencies: ["ThreadSafe"]),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
     .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
     .target(name: "PancakeUI", dependencies: [

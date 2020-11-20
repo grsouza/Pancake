@@ -111,7 +111,7 @@ class UnfairLockTestCase: XCTestCase {
       return q
     }
 
-    let box = MutableBox(0)
+    let box = Box()
 
     for _ in 1 ... numWrites {
       queues.forEach {
@@ -137,4 +137,8 @@ class UnfairLockTestCase: XCTestCase {
   private var lock: Lock.UnfairLock!
   private var queue: DispatchQueue!
 
+}
+
+class Box {
+  var value: Int = 0
 }
