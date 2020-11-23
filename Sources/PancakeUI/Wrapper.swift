@@ -5,7 +5,7 @@ public final class Wrapper: View {
 
   // MARK: Lifecycle
 
-  public init(_ view: UIView, alignment: Alignment = .all, usingSafeArea: Bool = false) {
+  public init(_ view: UIView, alignment: Alignment = .edges, usingSafeArea: Bool = false) {
     super.init()
 
     addSubview(view)
@@ -50,7 +50,9 @@ public final class Wrapper: View {
     public static let leading = Alignment(rawValue: 1 << 3)
     public static let centerX = Alignment(rawValue: 1 << 4)
     public static let centerY = Alignment(rawValue: 1 << 5)
-    public static let all: Alignment = [.top, .trailing, .bottom, .leading, .centerX, .centerY]
+
+    public static let edges: Alignment = [.top, .trailing, .bottom, .leading]
+    public static let center: Alignment = [.centerX, .centerY]
   }
 
 }

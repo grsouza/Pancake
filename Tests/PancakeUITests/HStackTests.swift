@@ -15,10 +15,10 @@ final class HStackTests: XCTestCase {
     }
 
     let stack = HStack(
+      views,
       spacing: 10,
       alignment: .fill,
-      distribution: .fill,
-      views
+      distribution: .fill
     ).with {
       $0.height(32)
       $0.backgroundColor = .white
@@ -50,9 +50,9 @@ final class HStackTests: XCTestCase {
 
     for alignment in alignments {
       let stack = HStack(
+        view1, view2, view3,
         spacing: 10,
-        alignment: alignment,
-        view1, view2, view3
+        alignment: alignment
       ).with {
         $0.height(128)
         $0.backgroundColor = .white

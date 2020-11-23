@@ -6,10 +6,10 @@ public final class HStack: View {
   // MARK: Lifecycle
 
   public init(
-    spacing: CGFloat,
-    alignment: UIStackView.Alignment = .fill,
-    distribution: UIStackView.Distribution = .fill,
-    _ views: [UIView]
+    _ views: [UIView],
+    spacing: CGFloat = Defaults.stackSpacing,
+    alignment: UIStackView.Alignment = Defaults.stackAlignment,
+    distribution: UIStackView.Distribution = Defaults.stackDistribution
   ) {
     super.init()
 
@@ -26,26 +26,12 @@ public final class HStack: View {
   }
 
   public convenience init(
-    spacing: CGFloat,
-    alignment: UIStackView.Alignment = .fill,
-    distribution: UIStackView.Distribution = .fill,
-    _ views: UIView...
+    _ views: UIView...,
+    spacing: CGFloat = Defaults.stackSpacing,
+    alignment: UIStackView.Alignment = Defaults.stackAlignment,
+    distribution: UIStackView.Distribution = Defaults.stackDistribution
   ) {
-    self.init(spacing: spacing, alignment: alignment, distribution: distribution, views)
-  }
-
-  public convenience init(
-    spacing: CGFloat,
-    alignment: UIStackView.Alignment = .fill,
-    distribution: UIStackView.Distribution = .fill,
-    _ views: UIView?...
-  ) {
-    self.init(
-      spacing: spacing,
-      alignment: alignment,
-      distribution: distribution,
-      views.compactMap { $0 }
-    )
+    self.init(views, spacing: spacing, alignment: alignment, distribution: distribution)
   }
 
   // MARK: Private
@@ -61,10 +47,10 @@ public final class VStack: View {
   // MARK: Lifecycle
 
   public init(
-    spacing: CGFloat,
-    alignment: UIStackView.Alignment = .fill,
-    distribution: UIStackView.Distribution = .fill,
-    _ views: [UIView]
+    _ views: [UIView],
+    spacing: CGFloat = Defaults.stackSpacing,
+    alignment: UIStackView.Alignment = Defaults.stackAlignment,
+    distribution: UIStackView.Distribution = Defaults.stackDistribution
   ) {
     super.init()
 
@@ -81,26 +67,12 @@ public final class VStack: View {
   }
 
   public convenience init(
-    spacing: CGFloat,
-    alignment: UIStackView.Alignment = .fill,
-    distribution: UIStackView.Distribution = .fill,
-    _ views: UIView...
+    _ views: UIView...,
+    spacing: CGFloat = Defaults.stackSpacing,
+    alignment: UIStackView.Alignment = Defaults.stackAlignment,
+    distribution: UIStackView.Distribution = Defaults.stackDistribution
   ) {
-    self.init(spacing: spacing, alignment: alignment, distribution: distribution, views)
-  }
-
-  public convenience init(
-    spacing: CGFloat,
-    alignment: UIStackView.Alignment = .fill,
-    distribution: UIStackView.Distribution = .fill,
-    _ views: UIView?...
-  ) {
-    self.init(
-      spacing: spacing,
-      alignment: alignment,
-      distribution: distribution,
-      views.compactMap { $0 }
-    )
+    self.init(views, spacing: spacing, alignment: alignment, distribution: distribution)
   }
 
   // MARK: Private

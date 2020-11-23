@@ -6,8 +6,8 @@ public final class ScrollView: View {
   // MARK: Lifecycle
 
   public init(
-    axis: NSLayoutConstraint.Axis,
-    _ view: UIView
+    _ view: UIView,
+    axis: NSLayoutConstraint.Axis = Defaults.scrollViewAxis
   ) {
     scrollView = UIScrollView()
     scrollView.addSubview(view)

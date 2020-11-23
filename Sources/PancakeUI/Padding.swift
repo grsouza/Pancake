@@ -5,7 +5,7 @@ public final class Padding: View {
 
   public init(
     _ view: UIView,
-    insets: UIEdgeInsets
+    insets: UIEdgeInsets = Defaults.padding
   ) {
     super.init()
 

@@ -11,10 +11,12 @@ public final class ScreenView: View {
     footer: UIView?
   ) {
     stackView = VStack(
-      spacing: 0,
-      header,
-      content.map(SafeArea.init),
-      footer
+      [
+        header,
+        content.map(SafeArea.init),
+        footer,
+      ].compactMap { $0 },
+      spacing: 0
     )
 
     super.init()

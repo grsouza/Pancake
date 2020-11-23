@@ -15,10 +15,10 @@ final class VStackTests: XCTestCase {
     }
 
     let stack = VStack(
+      views,
       spacing: 10,
       alignment: .fill,
-      distribution: .fill,
-      views
+      distribution: .fill
     ).with {
       $0.width(256)
       $0.backgroundColor = .white
@@ -50,9 +50,9 @@ final class VStackTests: XCTestCase {
 
     for alignment in alignments {
       let stack = VStack(
+        view1, view2, view3,
         spacing: 10,
-        alignment: alignment,
-        view1, view2, view3
+        alignment: alignment
       ).with {
         $0.width(256)
         $0.backgroundColor = .white

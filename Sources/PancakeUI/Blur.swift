@@ -6,8 +6,8 @@ public final class Blur: View {
   // MARK: Lifecycle
 
   public init(
-    style: UIBlurEffect.Style = .prominent,
-    _ childView: UIView
+    _ childView: UIView,
+    style: UIBlurEffect.Style = Defaults.blurStyle
   ) {
     effect = UIBlurEffect(style: style)
     self.childView = childView
