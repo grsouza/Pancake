@@ -2,12 +2,8 @@ import Foundation
 
 extension UserDefaults {
   public subscript(key: String) -> Any? {
-    get {
-      object(forKey: key)
-    }
-    set {
-      set(newValue, forKey: key)
-    }
+    get { object(forKey: key) }
+    set { set(newValue, forKey: key) }
   }
 
   public func float(forKey key: String) -> Float? {
@@ -20,7 +16,7 @@ extension UserDefaults {
 
   public func object<T: Codable>(
     _ type: T.Type,
-    with key: String,
+    for key: String,
     usingDecoder decoder: JSONDecoder = JSONDecoder()
   ) throws -> T? {
     guard let data = value(forKey: key) as? Data else { return nil }
