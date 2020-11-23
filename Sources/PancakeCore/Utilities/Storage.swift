@@ -40,7 +40,7 @@ public final class Storage {
         return Key.defaultValue
       }
 
-      return value
+      return typedValue
     }
   }
 
