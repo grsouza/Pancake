@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "Weak",
+        "repositoryURL": "https://github.com/grsouza/swift-weak.git",
+        "state": {
+          "branch": null,
+          "revision": "1b17fa7dd68882c96c9e04e501ab70046128c708",
+          "version": "0.1.0"
+        }
+      },
+      {
         "package": "TinyConstraints",
         "repositoryURL": "https://github.com/roberthein/TinyConstraints",
         "state": {

@@ -24,6 +24,11 @@ let package = Package(
       url: "https://github.com/grsouza/swift-threadsafe.git",
       from: "1.0.0"
     ),
+    .package(
+      name: "Weak",
+      url: "https://github.com/grsouza/swift-weak.git",
+      from: "0.1.0"
+    ),
     .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
     .package(
       name: "SnapshotTesting",
@@ -33,11 +38,12 @@ let package = Package(
   ],
   targets: [
     .target(name: "PancakeCore", dependencies: ["ThreadSafe"]),
-    .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore"]),
+    .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore", "SnapshotTesting"]),
     .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
     .target(name: "PancakeUI", dependencies: [
       .target(name: "PancakeCore"),
       "TinyConstraints",
+      "Weak",
     ]),
     .testTarget(name: "PancakeUITests", dependencies: ["PancakeUI", "SnapshotTesting"]),
   ],
