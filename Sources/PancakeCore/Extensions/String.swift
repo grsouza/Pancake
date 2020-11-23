@@ -7,8 +7,10 @@ extension String {
     dump(value, to: &self)
   }
 
+  /// Current string casted as a `NSString`.
   public var nsString: NSString { self as NSString }
 
+  /// Returns a substring in the `NSRange` provided.
   public func substring(with nsRange: NSRange) -> String {
     nsString.substring(with: nsRange)
   }

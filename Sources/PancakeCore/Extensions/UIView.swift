@@ -2,6 +2,7 @@
 import UIKit
 
 extension UIView {
+  /// Returns the first `UIViewController` found in responder chain, or `nil` if none is found.
   public var parentViewController: UIViewController? {
     weak var parentResponder: UIResponder? = self
     while parentResponder != nil {

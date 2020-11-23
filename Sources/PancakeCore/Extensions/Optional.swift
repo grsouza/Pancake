@@ -1,6 +1,7 @@
 import Foundation
 
 extension Optional {
+  /// Unwrap Optional if it has some value, otherwise throw the error.
   public func unwrap(
     or error: @autoclosure () -> Swift.Error
   ) throws -> Wrapped {
