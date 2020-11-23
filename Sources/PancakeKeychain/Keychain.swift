@@ -288,6 +288,7 @@ public final class Keychain {
     return status == errSecSuccess
   }
 
+  @discardableResult
   public func update(
     _ data: Data,
     forKey key: Key,
