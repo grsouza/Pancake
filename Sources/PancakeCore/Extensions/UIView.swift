@@ -12,5 +12,15 @@ extension UIView {
     }
     return nil
   }
+
+  @inlinable
+  public func addSubviews(_ views: [UIView]) {
+    views.forEach { addSubview($0) }
+  }
+
+  @inlinable
+  public func addSubviews(_ views: UIView...) {
+    addSubviews(views)
+  }
 }
 #endif
