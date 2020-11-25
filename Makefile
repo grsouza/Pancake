@@ -1,10 +1,16 @@
+setuptools:
+	@brew bundle
+
 fmt:
 	@swiftformat --config .swiftformat ./
 
-build:
-	@swift build
+xcode:
+	@swift package generate-xcodeproj
 
-test:
-	@swift test --enable-test-discovery
+build: xcode
+	@xcodebuild build -sdk iphoneos -scheme "Pancake-Package"
 
-.PHONY: fmt build test
+test: xcode
+	@xcodebuild test -destination 'name=iPhone 8' -scheme 'Pancake-Package'
+
+.PHONY: setuptools fmt xcode build test
