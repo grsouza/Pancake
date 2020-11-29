@@ -23,6 +23,14 @@ extension UIViewController {
     removeFromParent()
     view.removeFromSuperview()
   }
+
+  public func embededInNavigationController<NavigationController: UINavigationController>(_: NavigationController.Type) -> NavigationController {
+    NavigationController(rootViewController: self)
+  }
+
+  public func embededInNavigationController() -> UINavigationController {
+    UINavigationController(rootViewController: self)
+  }
 }
 
 #endif
