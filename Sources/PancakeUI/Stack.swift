@@ -1,38 +1,45 @@
 #if canImport(UIKit)
 import UIKit
 
-public final class HStack: View {
+public protocol Stackable {
+  var rootView: UIView { get }
+}
+
+extension UIView: Stackable {
+  public var rootView: UIView { self }
+}
+
+public struct HStack: Stackable {
 
   // MARK: Lifecycle
 
   public init(
-    _ views: [UIView],
+    _ views: [Stackable],
     spacing: CGFloat = Defaults.stackSpacing,
     alignment: UIStackView.Alignment = Defaults.stackAlignment,
     distribution: UIStackView.Distribution = Defaults.stackDistribution
   ) {
-    super.init()
-
     stackView.spacing = spacing
     stackView.alignment = alignment
     stackView.distribution = distribution
 
     views.forEach {
-      stackView.addArrangedSubview($0)
+      stackView.addArrangedSubview($0.rootView)
     }
-
-    addSubview(stackView)
-    stackView.edgesToSuperview()
   }
 
-  public convenience init(
-    _ views: UIView...,
+  public init(
+    _ views: Stackable...,
     spacing: CGFloat = Defaults.stackSpacing,
     alignment: UIStackView.Alignment = Defaults.stackAlignment,
     distribution: UIStackView.Distribution = Defaults.stackDistribution
   ) {
     self.init(views, spacing: spacing, alignment: alignment, distribution: distribution)
   }
+
+  // MARK: Public
+
+  public var rootView: UIView { stackView }
 
   // MARK: Private
 
@@ -42,38 +49,37 @@ public final class HStack: View {
 
 }
 
-public final class VStack: View {
+public struct VStack: Stackable {
 
   // MARK: Lifecycle
 
   public init(
-    _ views: [UIView],
+    _ views: [Stackable],
     spacing: CGFloat = Defaults.stackSpacing,
     alignment: UIStackView.Alignment = Defaults.stackAlignment,
     distribution: UIStackView.Distribution = Defaults.stackDistribution
   ) {
-    super.init()
-
     stackView.spacing = spacing
     stackView.alignment = alignment
     stackView.distribution = distribution
 
     views.forEach {
-      stackView.addArrangedSubview($0)
+      stackView.addArrangedSubview($0.rootView)
     }
-
-    addSubview(stackView)
-    stackView.edgesToSuperview()
   }
 
-  public convenience init(
-    _ views: UIView...,
+  public init(
+    _ views: Stackable...,
     spacing: CGFloat = Defaults.stackSpacing,
     alignment: UIStackView.Alignment = Defaults.stackAlignment,
     distribution: UIStackView.Distribution = Defaults.stackDistribution
   ) {
     self.init(views, spacing: spacing, alignment: alignment, distribution: distribution)
   }
+
+  // MARK: Public
+
+  public var rootView: UIView { stackView }
 
   // MARK: Private
 

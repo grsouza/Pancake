@@ -18,13 +18,13 @@ open class TableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: Internal
+  // MARK: Open
 
-  func configureSubviews() {}
+  open func configureSubviews() {}
 
-  func configureConstraints() {}
+  open func configureConstraints() {}
 
-  func additionalConfigurations() {}
+  open func additionalConfigurations() {}
 
 }
 #endif

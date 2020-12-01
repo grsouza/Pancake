@@ -4,12 +4,12 @@ import UIKit
 public final class SafeArea: View {
 
   public init(
-    _ view: UIView
+    _ view: Stackable
   ) {
     super.init()
 
-    addSubview(view)
-    view.edgesToSuperview(usingSafeArea: true)
+    addSubview(view.rootView)
+    view.rootView.edgesToSuperview(usingSafeArea: true)
   }
 }
 #endif

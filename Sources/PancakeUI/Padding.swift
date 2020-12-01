@@ -1,16 +1,16 @@
 #if canImport(UIKit)
 import UIKit
 
-public final class Padding: View {
+public struct Padding: Stackable {
 
   public init(
-    _ view: UIView,
+    _ view: Stackable,
     insets: UIEdgeInsets = Defaults.padding
   ) {
-    super.init()
-
-    addSubview(view)
-    view.edgesToSuperview(insets: insets)
+    rootView.addSubview(view.rootView)
+    view.rootView.edgesToSuperview(insets: insets)
   }
+
+  public var rootView: UIView = UIView()
 }
 #endif

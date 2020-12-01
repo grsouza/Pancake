@@ -1,7 +1,7 @@
 import UIKit
 
 extension UITableViewCell {
-  class var reuseIdentifier: String { "\(self)" }
+  open class var reuseIdentifier: String { "\(self)" }
 }
 
 extension UITableView {

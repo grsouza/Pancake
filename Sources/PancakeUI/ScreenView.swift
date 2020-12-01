@@ -35,18 +35,18 @@ public final class ScreenView: View {
   public override func configureSubviews() {
     super.configureSubviews()
 
-    addSubview(stackView)
+    addSubview(stackView.rootView)
   }
 
   public override func configureConstraints() {
     super.configureConstraints()
 
-    bottomConstraint = stackView.edgesToSuperview().last
+    bottomConstraint = stackView.rootView.edgesToSuperview().last
   }
 
   // MARK: Private
 
-  private let stackView: UIView
+  private let stackView: Stackable
 
   private var bottomConstraint: NSLayoutConstraint?
 
