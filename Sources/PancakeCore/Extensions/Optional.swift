@@ -18,7 +18,6 @@ extension Optional where Wrapped: Collection {
   /// Check if optional is nil or has an empty collection.
   @inlinable
   public var isNilOrEmpty: Bool {
-    guard let collection = self else { return false }
-    return collection.isEmpty
+    self?.isEmpty ?? true
   }
 }
