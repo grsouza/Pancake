@@ -1,4 +1,5 @@
 #if canImport(UIKit)
+import PancakeCore
 import PancakeUI
 import SnapshotTesting
 import UIKit
@@ -19,7 +20,7 @@ final class HStackTests: XCTestCase {
       spacing: 10,
       alignment: .fill,
       distribution: .fill
-    ).with {
+    ).rootView.with {
       $0.height(32)
       $0.backgroundColor = .white
     }
@@ -53,7 +54,7 @@ final class HStackTests: XCTestCase {
         view1, view2, view3,
         spacing: 10,
         alignment: alignment
-      ).with {
+      ).rootView.with {
         $0.height(128)
         $0.backgroundColor = .white
       }

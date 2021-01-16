@@ -19,7 +19,7 @@ final class VStackTests: XCTestCase {
       spacing: 10,
       alignment: .fill,
       distribution: .fill
-    ).with {
+    ).rootView.with {
       $0.width(256)
       $0.backgroundColor = .white
     }
@@ -53,7 +53,7 @@ final class VStackTests: XCTestCase {
         view1, view2, view3,
         spacing: 10,
         alignment: alignment
-      ).with {
+      ).rootView.with {
         $0.width(256)
         $0.backgroundColor = .white
       }

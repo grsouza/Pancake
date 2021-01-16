@@ -5,10 +5,6 @@ public final class Keychain {
 
   // MARK: Lifecycle
 
-  convenience init() {
-    self.init(serviceName: Keychain.defaultKeychainServiceName)
-  }
-
   public init(serviceName: String, accessGroup: String? = nil) {
     self.serviceName = serviceName
     self.accessGroup = accessGroup
@@ -23,8 +19,6 @@ public final class Keychain {
       self.rawValue = rawValue
     }
   }
-
-  public static let standard = Keychain()
 
   private(set) public var serviceName: String
   private(set) public var accessGroup: String?
@@ -309,10 +303,6 @@ public final class Keychain {
   }
 
   // MARK: Private
-
-  private static let defaultKeychainServiceName: String = {
-    Bundle.main.bundleIdentifier ?? "dev.grds.pancakekeychain"
-  }()
 
   private func makeQueryDictionary(
     forKey key: Key,

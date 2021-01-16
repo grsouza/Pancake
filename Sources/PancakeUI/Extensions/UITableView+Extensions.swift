@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 extension UITableViewCell {
@@ -18,3 +19,4 @@ extension UITableView {
     return cell
   }
 }
+#endif

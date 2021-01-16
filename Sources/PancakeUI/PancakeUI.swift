@@ -1,5 +1,7 @@
 @_exported import PancakeCore
 @_exported import TinyConstraints
+
+#if canImport(UIKit)
 import UIKit
 
 public enum Defaults {
@@ -10,3 +12,5 @@ public enum Defaults {
   public static var stackAlignment: UIStackView.Alignment = .fill
   public static var stackDistribution: UIStackView.Distribution = .fill
 }
+
+#endif

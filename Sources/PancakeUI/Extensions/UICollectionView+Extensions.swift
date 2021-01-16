@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 extension UICollectionViewCell {
@@ -23,3 +24,4 @@ extension UICollectionView {
     return cell
   }
 }
+#endif
