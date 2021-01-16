@@ -1,16 +1,17 @@
 setuptools:
 	@brew bundle
+	@bundle install
 
 fmt:
-	@swiftformat --config .swiftformat ./
+	@swiftformat Sources/ Tests/
 
 xcode:
-	@swift package generate-xcodeproj
+	@bundle exec fastlane xcode
 
-build: xcode
-	@xcodebuild build -sdk iphoneos -scheme "Pancake-Package"
+build:
+	@bundle exec fastlane build
 
-test: xcode
-	@xcodebuild test -destination 'name=iPhone 8' -scheme 'Pancake-Package'
+test:
+	@bundle exec fastlane test
 
 .PHONY: setuptools fmt xcode build test

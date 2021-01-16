@@ -1,0 +1,20 @@
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Generate xcodeproj file"
+  lane :xcode do
+    spm(command: "generate-xcodeproj", enable_code_coverage: true)
+  end
+
+  lane :build do
+    xcode
+    gym(scheme: "Pancake-Package", destination: "generic/platform=iOS")
+  end
+
+  desc "Description of what the lane does"
+  lane :test do
+    xcode
+    scan(scheme: "Pancake-Package", device: "iPhone 8")
+  end
+end
