@@ -20,11 +20,6 @@ let package = Package(
   ],
   dependencies: [
     .package(
-      name: "ThreadSafe",
-      url: "https://github.com/grsouza/swift-threadsafe.git",
-      from: "1.0.0"
-    ),
-    .package(
       name: "Weak",
       url: "https://github.com/grsouza/swift-weak.git",
       from: "0.1.0"
@@ -37,7 +32,7 @@ let package = Package(
     ),
   ],
   targets: [
-    .target(name: "PancakeCore", dependencies: ["ThreadSafe"]),
+    .target(name: "PancakeCore", dependencies: []),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore", "SnapshotTesting"]),
     .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
     .target(name: "PancakeUI", dependencies: [

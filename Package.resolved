@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "ThreadSafe",
-        "repositoryURL": "https://github.com/grsouza/swift-threadsafe.git",
-        "state": {
-          "branch": null,
-          "revision": "cc3cf8063aa6f6725a6c2f832202641127f0b91f",
-          "version": "1.0.0"
-        }
-      },
-      {
         "package": "Weak",
         "repositoryURL": "https://github.com/grsouza/swift-weak.git",
         "state": {
