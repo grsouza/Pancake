@@ -1,5 +1,4 @@
 import Foundation
-import ThreadSafe
 
 public protocol StorageKey {
   associatedtype Value
