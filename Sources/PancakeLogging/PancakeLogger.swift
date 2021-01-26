@@ -1,18 +1,6 @@
 import Foundation
 import PancakeCore
 
-public protocol Destination {
-  func send(
-    _ level: Logger.Level,
-    msg: String,
-    thread: String,
-    file: String,
-    function: String,
-    line: Int,
-    context: Any?
-  )
-}
-
 public enum Logger {
 
   // MARK: Public

@@ -50,27 +50,4 @@ public final class FileDestination: Destination {
 
   private let logFileURL: URL
 
-  private func fileName(for file: String) -> String {
-    file.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
-  }
-
-  private func emoji(for level: Logger.Level) -> String {
-    switch level {
-    case .verbose: return "📝"
-    case .debug: return "✅"
-    case .info: return "ℹ️"
-    case .warning: return "⚠️"
-    case .error: return "🚫"
-    }
-  }
-
-  private func levelString(for level: Logger.Level) -> String {
-    switch level {
-    case .verbose: return "VERBOSE"
-    case .debug: return "DEBUG"
-    case .info: return "INFO"
-    case .warning: return "WARNING"
-    case .error: return "ERROR"
-    }
-  }
 }
