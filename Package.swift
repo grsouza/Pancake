@@ -19,11 +19,6 @@ let package = Package(
     .library(name: "PancakeKeychain", targets: ["PancakeKeychain"]),
   ],
   dependencies: [
-    .package(
-      name: "Weak",
-      url: "https://github.com/grsouza/swift-weak.git",
-      from: "0.1.0"
-    ),
     .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
     .package(
       name: "SnapshotTesting",
@@ -38,7 +33,6 @@ let package = Package(
     .target(name: "PancakeUI", dependencies: [
       .target(name: "PancakeCore"),
       "TinyConstraints",
-      "Weak",
     ]),
     .testTarget(name: "PancakeUITests", dependencies: ["PancakeUI", "SnapshotTesting"]),
   ],
