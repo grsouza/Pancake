@@ -12,11 +12,12 @@ let package = Package(
   products: [
     .library(
       name: "Pancake",
-      targets: ["PancakeCore", "PancakeUI", "PancakeKeychain"]
+      targets: ["PancakeCore", "PancakeUI", "PancakeKeychain", "PancakeLogging"]
     ),
     .library(name: "PancakeCore", targets: ["PancakeCore"]),
     .library(name: "PancakeUI", targets: ["PancakeUI"]),
     .library(name: "PancakeKeychain", targets: ["PancakeKeychain"]),
+    .library(name: "PancakeLogging", targets: ["PancakeLogging"]),
   ],
   dependencies: [
     .package(url: "https://github.com/roberthein/TinyConstraints", from: "4.0.0"),
@@ -35,6 +36,8 @@ let package = Package(
       "TinyConstraints",
     ]),
     .testTarget(name: "PancakeUITests", dependencies: ["PancakeUI", "SnapshotTesting"]),
+    .target(name: "PancakeLogging", dependencies: ["PancakeCore"]),
+    .testTarget(name: "PancakeLoggingTests", dependencies: ["PancakeLogging"]),
   ],
   swiftLanguageVersions: [.v5]
 )
