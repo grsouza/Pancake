@@ -6,8 +6,8 @@
 //
 
 #if canImport(UIKit)
+import PancakeCore
 import UIKit
-import Weak
 
 public final class FormToolbar {
 
