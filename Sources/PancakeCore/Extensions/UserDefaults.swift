@@ -23,8 +23,7 @@ extension UserDefaults {
     for key: String,
     usingDecoder decoder: JSONDecoder = JSONDecoder()
   ) throws -> T? {
-    guard let data = value(forKey: key) as? Data else { return nil }
-    return try decoder.decode(type.self, from: data)
+    try data(forKey: key).map { try decoder.decode(type.self, from: $0) }
   }
 
   @inlinable
