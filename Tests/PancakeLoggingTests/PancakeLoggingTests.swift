@@ -11,8 +11,5 @@ import XCTest
 final class PancakeLoggingTests: XCTestCase {
 
   func testConsoleLogging() {
-    Logger.addDestinations(ConsoleDestination(json: true), FileDestination())
-    Logger.custom(level: .debug, message: "This is a debug message")
-    Logger.error(message: "error message")
   }
 }
