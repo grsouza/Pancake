@@ -1,5 +1,10 @@
 import Foundation
 
+public enum Defaults {
+    public static var jsonDecoder = JSONDecoder()
+    public static var jsonEncoder = JSONEncoder()
+}
+
 extension UserDefaults {
   @inlinable
   public subscript(key: String) -> Any? {
@@ -21,7 +26,7 @@ extension UserDefaults {
   public func object<T: Codable>(
     _ type: T.Type,
     for key: String,
-    usingDecoder decoder: JSONDecoder = JSONDecoder()
+    usingDecoder decoder: JSONDecoder = Defaults.jsonDecoder
   ) throws -> T? {
     try data(forKey: key).map { try decoder.decode(type.self, from: $0) }
   }
@@ -30,7 +35,7 @@ extension UserDefaults {
   public func set<T: Codable>(
     object: T,
     forKey key: String,
-    usingEncoder encoder: JSONEncoder = JSONEncoder()
+    usingEncoder encoder: JSONEncoder = Defaults.jsonEncoder
   ) throws {
     let data = try encoder.encode(object)
     set(data, forKey: key)
