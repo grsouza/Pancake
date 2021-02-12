@@ -1,8 +1,8 @@
 import Foundation
 
 public enum Defaults {
-    public static var jsonDecoder = JSONDecoder()
-    public static var jsonEncoder = JSONEncoder()
+  public static var jsonDecoder = JSONDecoder()
+  public static var jsonEncoder = JSONEncoder()
 }
 
 extension UserDefaults {
