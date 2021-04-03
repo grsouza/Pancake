@@ -43,7 +43,7 @@ let package = Package(
     .target(name: "Cache"),
 
     // Keychain
-    .target(name: "Keychain"),
+    .target(name: "Keychain", dependencies: ["PancakeCore"]),
 
     // Lazy
     .target(name: "Lazy", dependencies: ["Lock"]),
