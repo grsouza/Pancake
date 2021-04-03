@@ -21,6 +21,7 @@ let package = Package(
     .library(name: "Box", targets: ["Box"]),
     .library(name: "Lazy", targets: ["Lazy"]),
     .library(name: "Lock", targets: ["Lock"]),
+    .library(name: "ThreadSafe", targets: ["ThreadSafe"]),
     .library(name: "Weak", targets: ["Weak"]),
   ],
   dependencies: [
@@ -46,7 +47,10 @@ let package = Package(
     .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
     .target(name: "PancakeLogging", dependencies: ["PancakeCore"]),
     .testTarget(name: "PancakeLoggingTests", dependencies: ["PancakeLogging"]),
-    
+
+    // ThreadSafe
+    .target(name: "ThreadSafe", dependencies: ["Lock"]),
+
     // Weak
     .target(name: "Weak"),
     .testTarget(name: "WeakTests", dependencies: ["Weak"]),

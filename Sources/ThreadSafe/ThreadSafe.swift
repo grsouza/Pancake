@@ -1,14 +1,14 @@
 import Foundation
+import Lock
 
 public final class ThreadSafe<Wrapped> {
 
-  // MARK: Lifecycle
+  private let lock = RWLock()
+  private var value: Wrapped
 
   public init(value: Wrapped) {
     self.value = value
   }
-
-  // MARK: Public
 
   public func read<Result>(_ block: (Wrapped) throws -> Result) rethrows -> Result {
     try lock.read {
@@ -21,9 +21,4 @@ public final class ThreadSafe<Wrapped> {
       try block(&value)
     }
   }
-
-  // MARK: Private
-
-  private let lock = RWLock()
-  private var value: Wrapped
 }
