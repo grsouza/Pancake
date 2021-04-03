@@ -1,9 +1,14 @@
 setuptools:
-	@brew bundle
 	@bundle install
 
-fmt:
-	@swiftformat Sources/ Tests/
+format:
+	@swift format \
+		--ignore-unparsable-files \
+		--in-place \
+		--recursive \
+		./Package.swift \
+		./Sources/ \
+		./Tests/ 
 
 xcode:
 	@bundle exec fastlane xcode
@@ -14,4 +19,4 @@ build:
 test:
 	@bundle exec fastlane test
 
-.PHONY: setuptools fmt xcode build test
+.PHONY: setuptools format xcode build test
