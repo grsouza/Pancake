@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import PancakeCore
 
 class UnfairLockTestCase: XCTestCase {
@@ -45,7 +46,7 @@ class UnfairLockTestCase: XCTestCase {
       XCTAssertFalse(self.lock.try())
       tryExpectation.fulfill()
 
-      self.lock.lock() // should block until unlocked
+      self.lock.lock()  // should block until unlocked
       lockExpectation.fulfill()
 
       sem.wait()
@@ -105,7 +106,7 @@ class UnfairLockTestCase: XCTestCase {
     let writeExpectation = expectation(description: "write")
     writeExpectation.expectedFulfillmentCount = numWrites * numQueues
 
-    let queues: [OperationQueue] = (0 ..< numQueues).map { _ in
+    let queues: [OperationQueue] = (0..<numQueues).map { _ in
       let q = OperationQueue()
       q.isSuspended = true
       return q
@@ -113,7 +114,7 @@ class UnfairLockTestCase: XCTestCase {
 
     let box = Box()
 
-    for _ in 1 ... numWrites {
+    for _ in 1...numWrites {
       queues.forEach {
         $0.addOperation {
           self.lock.lock()

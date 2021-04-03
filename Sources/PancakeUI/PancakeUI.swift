@@ -2,15 +2,15 @@
 @_exported import TinyConstraints
 
 #if canImport(UIKit)
-import UIKit
+  import UIKit
 
-public enum Defaults {
-  public static var padding: UIEdgeInsets = .uniform(20)
-  public static var blurStyle: UIBlurEffect.Style = .prominent
-  public static var scrollViewAxis: NSLayoutConstraint.Axis = .vertical
-  public static var stackSpacing: CGFloat = 16
-  public static var stackAlignment: UIStackView.Alignment = .fill
-  public static var stackDistribution: UIStackView.Distribution = .fill
-}
+  public enum Defaults {
+    public static var padding: UIEdgeInsets = .uniform(20)
+    public static var blurStyle: UIBlurEffect.Style = .prominent
+    public static var scrollViewAxis: NSLayoutConstraint.Axis = .vertical
+    public static var stackSpacing: CGFloat = 16
+    public static var stackAlignment: UIStackView.Alignment = .fill
+    public static var stackDistribution: UIStackView.Distribution = .fill
+  }
 
 #endif

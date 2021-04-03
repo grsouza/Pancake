@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import PancakeCore
 
 class LockTests: XCTestCase {

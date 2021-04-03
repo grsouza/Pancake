@@ -1,37 +1,37 @@
 #if canImport(UIKit)
-import UIKit
+  import UIKit
 
-public struct ScrollView: Stackable {
+  public struct ScrollView: Stackable {
 
-  // MARK: Lifecycle
+    // MARK: Lifecycle
 
-  public init(
-    _ view: Stackable,
-    axis: NSLayoutConstraint.Axis = Defaults.scrollViewAxis
-  ) {
-    scrollView = UIScrollView()
+    public init(
+      _ view: Stackable,
+      axis: NSLayoutConstraint.Axis = Defaults.scrollViewAxis
+    ) {
+      scrollView = UIScrollView()
 
-    let rootView = view.rootView
-    scrollView.addSubview(rootView)
-    rootView.edgesToSuperview()
+      let rootView = view.rootView
+      scrollView.addSubview(rootView)
+      rootView.edgesToSuperview()
 
-    switch axis {
-    case .horizontal:
-      rootView.heightToSuperview()
+      switch axis {
+      case .horizontal:
+        rootView.heightToSuperview()
 
-    case .vertical:
-      rootView.widthToSuperview()
+      case .vertical:
+        rootView.widthToSuperview()
 
-    @unknown default: ()
+      @unknown default: ()
+      }
     }
+
+    // MARK: Public
+
+    public var rootView: UIView { scrollView }
+
+    // MARK: Private
+
+    private let scrollView: UIScrollView
   }
-
-  // MARK: Public
-
-  public var rootView: UIView { scrollView }
-
-  // MARK: Private
-
-  private let scrollView: UIScrollView
-}
 #endif

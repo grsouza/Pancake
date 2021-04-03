@@ -32,7 +32,7 @@ public struct EmailAddress: RawRepresentable, Codable {
     let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
 
     let range = NSRange(
-      string.startIndex ..< string.endIndex,
+      string.startIndex..<string.endIndex,
       in: string
     )
 

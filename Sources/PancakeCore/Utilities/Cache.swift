@@ -97,8 +97,8 @@ public struct Cache<Key: Hashable, Value> {
   private let delegate = Delegate()
 }
 
-private extension Cache {
-  final class WrappedKey: NSObject {
+extension Cache {
+  fileprivate final class WrappedKey: NSObject {
 
     // MARK: Lifecycle
 
@@ -121,7 +121,7 @@ private extension Cache {
     }
   }
 
-  final class Entry {
+  fileprivate final class Entry {
 
     // MARK: Lifecycle
 
@@ -135,7 +135,7 @@ private extension Cache {
 
   }
 
-  final class Delegate: NSObject, NSCacheDelegate {
+  fileprivate final class Delegate: NSObject, NSCacheDelegate {
     var willEvictValue: ((Value) -> Void)?
 
     func cache(_: NSCache<AnyObject, AnyObject>, willEvictObject obj: Any) {

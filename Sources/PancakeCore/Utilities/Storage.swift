@@ -37,7 +37,7 @@ public final class Storage {
         return Key.defaultValue
       }
 
-      guard let typedValue = value  as? Key.Value else {
+      guard let typedValue = value as? Key.Value else {
         assertionFailure("unexpected typed value: \(value)")
         return Key.defaultValue
       }

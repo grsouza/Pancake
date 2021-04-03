@@ -68,7 +68,6 @@ public final class MutableBox<Wrapped> {
   public var value: Wrapped
 }
 
-
 extension MutableBox: Comparable where Wrapped: Comparable {
   public static func < (lhs: MutableBox<Wrapped>, rhs: MutableBox<Wrapped>) -> Bool {
     lhs.value < rhs.value

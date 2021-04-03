@@ -28,11 +28,13 @@ public final class Keychain {
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Int? {
-    guard let numberValue = object(
-      forKey: key,
-      withAccessibility: accessibility,
-      isSynchronizable: isSynchronizable
-    ) as? NSNumber else {
+    guard
+      let numberValue = object(
+        forKey: key,
+        withAccessibility: accessibility,
+        isSynchronizable: isSynchronizable
+      ) as? NSNumber
+    else {
       return nil
     }
 
@@ -44,11 +46,13 @@ public final class Keychain {
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Float? {
-    guard let numberValue = object(
-      forKey: key,
-      withAccessibility: accessibility,
-      isSynchronizable: isSynchronizable
-    ) as? NSNumber else {
+    guard
+      let numberValue = object(
+        forKey: key,
+        withAccessibility: accessibility,
+        isSynchronizable: isSynchronizable
+      ) as? NSNumber
+    else {
       return nil
     }
 
@@ -60,11 +64,13 @@ public final class Keychain {
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Double? {
-    guard let numberValue = object(
-      forKey: key,
-      withAccessibility: accessibility,
-      isSynchronizable: isSynchronizable
-    ) as? NSNumber else {
+    guard
+      let numberValue = object(
+        forKey: key,
+        withAccessibility: accessibility,
+        isSynchronizable: isSynchronizable
+      ) as? NSNumber
+    else {
       return nil
     }
 
@@ -76,11 +82,13 @@ public final class Keychain {
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> Bool? {
-    guard let numberValue = object(
-      forKey: key,
-      withAccessibility: accessibility,
-      isSynchronizable: isSynchronizable
-    ) as? NSNumber else {
+    guard
+      let numberValue = object(
+        forKey: key,
+        withAccessibility: accessibility,
+        isSynchronizable: isSynchronizable
+      ) as? NSNumber
+    else {
       return nil
     }
 
@@ -92,11 +100,13 @@ public final class Keychain {
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> String? {
-    guard let data = data(
-      forKey: key,
-      withAccessibility: accessibility,
-      isSynchronizable: isSynchronizable
-    ) else {
+    guard
+      let data = data(
+        forKey: key,
+        withAccessibility: accessibility,
+        isSynchronizable: isSynchronizable
+      )
+    else {
       return nil
     }
 
@@ -108,11 +118,13 @@ public final class Keychain {
     withAccessibility accessibility: ItemAccessibility? = nil,
     isSynchronizable: Bool = false
   ) -> NSCoding? {
-    guard let keychainData = data(
-      forKey: key,
-      withAccessibility: accessibility,
-      isSynchronizable: isSynchronizable
-    ) else {
+    guard
+      let keychainData = data(
+        forKey: key,
+        withAccessibility: accessibility,
+        isSynchronizable: isSynchronizable
+      )
+    else {
       return nil
     }
 
@@ -241,7 +253,7 @@ public final class Keychain {
   ) -> Bool {
     let queryDictionary = makeQueryDictionary(
       forKey: key,
-      withAccessibility: accessibility ?? ItemAccessibility.whenUnlocked, // Use default protection, protect the keychain entry so it's only valid when the device is unlocked
+      withAccessibility: accessibility ?? ItemAccessibility.whenUnlocked,  // Use default protection, protect the keychain entry so it's only valid when the device is unlocked
       isSynchronizable: isSynchronizable
     ).with {
       $0[kSecValueData] = data

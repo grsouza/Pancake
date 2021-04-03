@@ -31,10 +31,12 @@ let package = Package(
     .target(name: "PancakeCore", dependencies: []),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore", "SnapshotTesting"]),
     .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
-    .target(name: "PancakeUI", dependencies: [
-      .target(name: "PancakeCore"),
-      "TinyConstraints",
-    ]),
+    .target(
+      name: "PancakeUI",
+      dependencies: [
+        .target(name: "PancakeCore"),
+        "TinyConstraints",
+      ]),
     .testTarget(name: "PancakeUITests", dependencies: ["PancakeUI", "SnapshotTesting"]),
     .target(name: "PancakeLogging", dependencies: ["PancakeCore"]),
     .testTarget(name: "PancakeLoggingTests", dependencies: ["PancakeLogging"]),

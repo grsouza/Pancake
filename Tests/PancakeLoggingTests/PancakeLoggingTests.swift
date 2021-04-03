@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import PancakeLogging
 
 final class PancakeLoggingTests: XCTestCase {

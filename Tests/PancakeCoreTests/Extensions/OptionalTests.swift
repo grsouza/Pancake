@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import PancakeCore
 
 final class OptionalTests: XCTestCase {

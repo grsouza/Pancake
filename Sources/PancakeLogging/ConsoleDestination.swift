@@ -46,7 +46,8 @@ public final class ConsoleDestination: Destination {
       }
     } else {
       let dateString = dateFormatter.string(from: date)
-      message = "\(dateString) \(levelString(for: level)) \(emoji(for: level)) \(fileName(for: file)).\(function):\(line) - \(msg)"
+      message =
+        "\(dateString) \(levelString(for: level)) \(emoji(for: level)) \(fileName(for: file)).\(function):\(line) - \(msg)"
     }
 
     queue.async {

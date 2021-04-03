@@ -85,21 +85,21 @@ extension Tagged: Equatable where RawValue: Equatable {}
 extension Tagged: Error where RawValue: Error {}
 
 #if canImport(Foundation)
-import Foundation
-extension Tagged: LocalizedError where RawValue: Error {
-  public var errorDescription: String? {
-    rawValue.localizedDescription
+  import Foundation
+  extension Tagged: LocalizedError where RawValue: Error {
+    public var errorDescription: String? {
+      rawValue.localizedDescription
+    }
+    public var failureReason: String? {
+      (rawValue as? LocalizedError)?.failureReason
+    }
+    public var helpAnchor: String? {
+      (rawValue as? LocalizedError)?.helpAnchor
+    }
+    public var recoverySuggestion: String? {
+      (rawValue as? LocalizedError)?.recoverySuggestion
+    }
   }
-  public var failureReason: String? {
-    (rawValue as? LocalizedError)?.failureReason
-  }
-  public var helpAnchor: String? {
-    (rawValue as? LocalizedError)?.helpAnchor
-  }
-  public var recoverySuggestion: String? {
-    (rawValue as? LocalizedError)?.recoverySuggestion
-  }
-}
 #endif
 
 extension Tagged: ExpressibleByBooleanLiteral where RawValue: ExpressibleByBooleanLiteral {
@@ -110,7 +110,8 @@ extension Tagged: ExpressibleByBooleanLiteral where RawValue: ExpressibleByBoole
   }
 }
 
-extension Tagged: ExpressibleByExtendedGraphemeClusterLiteral where RawValue: ExpressibleByExtendedGraphemeClusterLiteral {
+extension Tagged: ExpressibleByExtendedGraphemeClusterLiteral
+where RawValue: ExpressibleByExtendedGraphemeClusterLiteral {
   public typealias ExtendedGraphemeClusterLiteralType = RawValue.ExtendedGraphemeClusterLiteralType
 
   public init(extendedGraphemeClusterLiteral: ExtendedGraphemeClusterLiteralType) {
@@ -142,7 +143,8 @@ extension Tagged: ExpressibleByStringLiteral where RawValue: ExpressibleByString
   }
 }
 
-extension Tagged: ExpressibleByStringInterpolation where RawValue: ExpressibleByStringInterpolation {
+extension Tagged: ExpressibleByStringInterpolation
+where RawValue: ExpressibleByStringInterpolation {
   public typealias StringInterpolation = RawValue.StringInterpolation
 
   public init(stringInterpolation: Self.StringInterpolation) {
@@ -150,7 +152,8 @@ extension Tagged: ExpressibleByStringInterpolation where RawValue: ExpressibleBy
   }
 }
 
-extension Tagged: ExpressibleByUnicodeScalarLiteral where RawValue: ExpressibleByUnicodeScalarLiteral {
+extension Tagged: ExpressibleByUnicodeScalarLiteral
+where RawValue: ExpressibleByUnicodeScalarLiteral {
   public typealias UnicodeScalarLiteralType = RawValue.UnicodeScalarLiteralType
 
   public init(unicodeScalarLiteral: UnicodeScalarLiteralType) {
@@ -175,85 +178,85 @@ extension Tagged: LosslessStringConvertible where RawValue: LosslessStringConver
 }
 
 #if compiler(>=5)
-extension Tagged: AdditiveArithmetic where RawValue: AdditiveArithmetic {
-  public static var zero: Tagged {
-    self.init(rawValue: .zero)
+  extension Tagged: AdditiveArithmetic where RawValue: AdditiveArithmetic {
+    public static var zero: Tagged {
+      self.init(rawValue: .zero)
+    }
+
+    public static func + (lhs: Tagged, rhs: Tagged) -> Tagged {
+      self.init(rawValue: lhs.rawValue + rhs.rawValue)
+    }
+
+    public static func += (lhs: inout Tagged, rhs: Tagged) {
+      lhs.rawValue += rhs.rawValue
+    }
+
+    public static func - (lhs: Tagged, rhs: Tagged) -> Tagged {
+      self.init(rawValue: lhs.rawValue - rhs.rawValue)
+    }
+
+    public static func -= (lhs: inout Tagged, rhs: Tagged) {
+      lhs.rawValue -= rhs.rawValue
+    }
   }
 
-  public static func + (lhs: Tagged, rhs: Tagged) -> Tagged {
-    self.init(rawValue: lhs.rawValue + rhs.rawValue)
-  }
+  extension Tagged: Numeric where RawValue: Numeric {
+    public init?<T>(exactly source: T) where T: BinaryInteger {
+      guard let rawValue = RawValue(exactly: source) else { return nil }
+      self.init(rawValue: rawValue)
+    }
 
-  public static func += (lhs: inout Tagged, rhs: Tagged) {
-    lhs.rawValue += rhs.rawValue
-  }
+    public var magnitude: RawValue.Magnitude {
+      rawValue.magnitude
+    }
 
-  public static func - (lhs: Tagged, rhs: Tagged) -> Tagged {
-    self.init(rawValue: lhs.rawValue - rhs.rawValue)
-  }
+    public static func * (lhs: Tagged, rhs: Tagged) -> Tagged {
+      self.init(rawValue: lhs.rawValue * rhs.rawValue)
+    }
 
-  public static func -= (lhs: inout Tagged, rhs: Tagged) {
-    lhs.rawValue -= rhs.rawValue
+    public static func *= (lhs: inout Tagged, rhs: Tagged) {
+      lhs.rawValue *= rhs.rawValue
+    }
   }
-}
-
-extension Tagged: Numeric where RawValue: Numeric {
-  public init?<T>(exactly source: T) where T: BinaryInteger {
-    guard let rawValue = RawValue(exactly: source) else { return nil }
-    self.init(rawValue: rawValue)
-  }
-
-  public var magnitude: RawValue.Magnitude {
-    rawValue.magnitude
-  }
-
-  public static func * (lhs: Tagged, rhs: Tagged) -> Tagged {
-    self.init(rawValue: lhs.rawValue * rhs.rawValue)
-  }
-
-  public static func *= (lhs: inout Tagged, rhs: Tagged) {
-    lhs.rawValue *= rhs.rawValue
-  }
-}
 #else
-extension Tagged: Numeric where RawValue: Numeric {
-  public typealias Magnitude = RawValue.Magnitude
+  extension Tagged: Numeric where RawValue: Numeric {
+    public typealias Magnitude = RawValue.Magnitude
 
-  public init?<T>(exactly source: T) where T: BinaryInteger {
-    guard let rawValue = RawValue(exactly: source) else { return nil }
-    self.init(rawValue: rawValue)
-  }
-  public var magnitude: RawValue.Magnitude {
-    rawValue.magnitude
-  }
+    public init?<T>(exactly source: T) where T: BinaryInteger {
+      guard let rawValue = RawValue(exactly: source) else { return nil }
+      self.init(rawValue: rawValue)
+    }
+    public var magnitude: RawValue.Magnitude {
+      rawValue.magnitude
+    }
 
-  public static func + (lhs: Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) -> Tagged<
-    Tag,
-    RawValue
-  > {
-    self.init(rawValue: lhs.rawValue + rhs.rawValue)
-  }
+    public static func + (lhs: Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) -> Tagged<
+      Tag,
+      RawValue
+    > {
+      self.init(rawValue: lhs.rawValue + rhs.rawValue)
+    }
 
-  public static func += (lhs: inout Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) {
-    lhs.rawValue += rhs.rawValue
-  }
+    public static func += (lhs: inout Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) {
+      lhs.rawValue += rhs.rawValue
+    }
 
-  public static func * (lhs: Tagged, rhs: Tagged) -> Tagged {
-    self.init(rawValue: lhs.rawValue * rhs.rawValue)
-  }
+    public static func * (lhs: Tagged, rhs: Tagged) -> Tagged {
+      self.init(rawValue: lhs.rawValue * rhs.rawValue)
+    }
 
-  public static func *= (lhs: inout Tagged, rhs: Tagged) {
-    lhs.rawValue *= rhs.rawValue
-  }
+    public static func *= (lhs: inout Tagged, rhs: Tagged) {
+      lhs.rawValue *= rhs.rawValue
+    }
 
-  public static func - (lhs: Tagged, rhs: Tagged) -> Tagged<Tag, RawValue> {
-    self.init(rawValue: lhs.rawValue - rhs.rawValue)
-  }
+    public static func - (lhs: Tagged, rhs: Tagged) -> Tagged<Tag, RawValue> {
+      self.init(rawValue: lhs.rawValue - rhs.rawValue)
+    }
 
-  public static func -= (lhs: inout Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) {
-    lhs.rawValue -= rhs.rawValue
+    public static func -= (lhs: inout Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) {
+      lhs.rawValue -= rhs.rawValue
+    }
   }
-}
 #endif
 
 extension Tagged: Hashable where RawValue: Hashable {}

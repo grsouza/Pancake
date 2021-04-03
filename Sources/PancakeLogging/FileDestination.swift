@@ -12,7 +12,8 @@ public final class FileDestination: Destination {
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
 
     let fileManager = FileManager.default
-    logFileURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("panckagelogging.log")
+    logFileURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!
+      .appendingPathComponent("panckagelogging.log")
   }
 
   // MARK: Public
@@ -28,7 +29,8 @@ public final class FileDestination: Destination {
   ) {
     let date = Date()
     let dateString = dateFormatter.string(from: date)
-    let message = "\(dateString) \(levelString(for: level)) \(emoji(for: level)) \(fileName(for: file)).\(function):\(line) - \(msg)"
+    let message =
+      "\(dateString) \(levelString(for: level)) \(emoji(for: level)) \(fileName(for: file)).\(function):\(line) - \(msg)"
 
     queue.async {
       do {

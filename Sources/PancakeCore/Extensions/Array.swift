@@ -11,7 +11,8 @@ extension Array {
   }
 
   @inlinable
-  public mutating func prepend<C>(contentsOf newElements: C) where C: Collection, C.Element == Element {
+  public mutating func prepend<C>(contentsOf newElements: C)
+  where C: Collection, C.Element == Element {
     insert(contentsOf: newElements, at: 0)
   }
 

@@ -1,21 +1,21 @@
 #if canImport(UIKit)
-import UIKit
+  import UIKit
 
-open class NavigationController: UINavigationController {
+  open class NavigationController: UINavigationController {
 
-  // MARK: Open
+    // MARK: Open
 
-  open override func viewDidDisappear(_ animated: Bool) {
-    super.viewDidDisappear(animated)
+    open override func viewDidDisappear(_ animated: Bool) {
+      super.viewDidDisappear(animated)
 
-    if isBeingDismissed || isMovingFromParent {
-      didFinish?()
+      if isBeingDismissed || isMovingFromParent {
+        didFinish?()
+      }
     }
+
+    // MARK: Public
+
+    public var didFinish: (() -> Void)?
+
   }
-
-  // MARK: Public
-
-  public var didFinish: (() -> Void)?
-
-}
 #endif
