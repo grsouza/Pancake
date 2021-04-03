@@ -20,6 +20,7 @@ let package = Package(
 
     .library(name: "Box", targets: ["Box"]),
     .library(name: "Lazy", targets: ["Lazy"]),
+    .library(name: "Weak", targets: ["Weak"]),
   ],
   dependencies: [
     .package(
@@ -39,6 +40,9 @@ let package = Package(
     .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
     .target(name: "PancakeLogging", dependencies: ["PancakeCore"]),
     .testTarget(name: "PancakeLoggingTests", dependencies: ["PancakeLogging"]),
+    // Weak
+    .target(name: "Weak"),
+    .testTarget(name: "WeakTests", dependencies: ["Weak"]),
   ],
   swiftLanguageVersions: [.v5]
 )
