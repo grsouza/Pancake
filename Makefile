@@ -1,6 +1,3 @@
-setuptools:
-	@bundle install
-
 format:
 	@swift format \
 		--ignore-unparsable-files \
@@ -14,9 +11,9 @@ xcode:
 	@bundle exec fastlane xcode
 
 build:
-	@bundle exec fastlane build
+	@swift build
 
 test:
-	@bundle exec fastlane test
+	@swift test --enable-test-discovery
 
-.PHONY: setuptools format xcode build test
+.PHONY: format build test
