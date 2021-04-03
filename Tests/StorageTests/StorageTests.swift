@@ -5,8 +5,7 @@
 //  Created by Guilherme Souza on 20/11/20.
 //
 
-import PancakeCore
-import SnapshotTesting
+import Storage
 import XCTest
 
 enum TestStorageKey: StorageKey {

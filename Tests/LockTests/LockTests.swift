@@ -1,11 +1,11 @@
 import XCTest
 
-@testable import PancakeCore
+@testable import Lock
 
 class LockTests: XCTestCase {
   func testMake_WithiOS10OrAbove_ShouldReturnAnUnfairLock() {
     let lock = Lock.make()
 
-    XCTAssert(lock is Lock.UnfairLock)
+    XCTAssert(lock is UnfairLock)
   }
 }

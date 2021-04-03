@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import PancakeCore
+@testable import Lock
 
 class PthreadLockTestCase: XCTestCase {
 
@@ -9,7 +9,7 @@ class PthreadLockTestCase: XCTestCase {
   override func setUp() {
     super.setUp()
 
-    lock = Lock.PthreadLock()
+    lock = PthreadLock()
     queue = DispatchQueue(label: "testQueue", qos: .default)
   }
 
@@ -135,7 +135,7 @@ class PthreadLockTestCase: XCTestCase {
 
   // MARK: Private
 
-  private var lock: Lock.PthreadLock!
+  private var lock: PthreadLock!
   private var queue: DispatchQueue!
 
 }

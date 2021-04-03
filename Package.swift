@@ -7,22 +7,24 @@ let package = Package(
   name: "Pancake",
   platforms: [
     .iOS(.v11),
-    .macOS(.v10_11),
+    .macOS(.v10_12),
   ],
   products: [
     .library(
       name: "Pancake",
-      targets: ["PancakeCore", "PancakeKeychain", "PancakeLogging"]
+      targets: ["PancakeCore"]
     ),
     .library(name: "PancakeCore", targets: ["PancakeCore"]),
-    .library(name: "PancakeLogging", targets: ["PancakeLogging"]),
 
     .library(name: "Box", targets: ["Box"]),
     .library(name: "Cache", targets: ["Cache"]),
     .library(name: "Keychain", targets: ["Keychain"]),
     .library(name: "Lazy", targets: ["Lazy"]),
     .library(name: "Lock", targets: ["Lock"]),
+    .library(name: "Logger", targets: ["Logger"]),
+    .library(name: "Storage", targets: ["Storage"]),
     .library(name: "ThreadSafe", targets: ["ThreadSafe"]),
+    .library(name: "UIKitExt", targets: ["UIKitExt"]),
     .library(name: "Weak", targets: ["Weak"]),
   ],
   dependencies: [
@@ -48,14 +50,23 @@ let package = Package(
 
     // Lock
     .target(name: "Lock"),
+    .testTarget(name: "LockTests", dependencies: ["Lock"]),
+
+    // Logger
+    .target(name: "Logger"),
 
     .target(name: "PancakeCore", dependencies: []),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore", "SnapshotTesting"]),
-    .target(name: "PancakeLogging", dependencies: ["PancakeCore"]),
-    .testTarget(name: "PancakeLoggingTests", dependencies: ["PancakeLogging"]),
+
+    // Storage
+    .target(name: "Storage", dependencies: ["ThreadSafe"]),
+    .testTarget(name: "StorageTests", dependencies: ["Storage"]),
 
     // ThreadSafe
     .target(name: "ThreadSafe", dependencies: ["Lock"]),
+
+    // UIKitExt
+    .target(name: "UIKitExt"),
 
     // Weak
     .target(name: "Weak"),

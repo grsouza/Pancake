@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import PancakeCore
+@testable import Lock
 
 class UnfairLockTestCase: XCTestCase {
 
@@ -9,7 +9,7 @@ class UnfairLockTestCase: XCTestCase {
   override func setUp() {
     super.setUp()
 
-    lock = Lock.UnfairLock()
+    lock = UnfairLock()
     queue = DispatchQueue(label: "testQueue", qos: .default)
   }
 
@@ -135,7 +135,7 @@ class UnfairLockTestCase: XCTestCase {
 
   // MARK: Private
 
-  private var lock: Lock.UnfairLock!
+  private var lock: UnfairLock!
   private var queue: DispatchQueue!
 
 }
