@@ -15,11 +15,11 @@ let package = Package(
       targets: ["PancakeCore", "PancakeKeychain", "PancakeLogging"]
     ),
     .library(name: "PancakeCore", targets: ["PancakeCore"]),
-    .library(name: "PancakeKeychain", targets: ["PancakeKeychain"]),
     .library(name: "PancakeLogging", targets: ["PancakeLogging"]),
 
     .library(name: "Box", targets: ["Box"]),
     .library(name: "Cache", targets: ["Cache"]),
+    .library(name: "Keychain", targets: ["Keychain"]),
     .library(name: "Lazy", targets: ["Lazy"]),
     .library(name: "Lock", targets: ["Lock"]),
     .library(name: "ThreadSafe", targets: ["ThreadSafe"]),
@@ -40,6 +40,9 @@ let package = Package(
     // Cache
     .target(name: "Cache"),
 
+    // Keychain
+    .target(name: "Keychain"),
+
     // Lazy
     .target(name: "Lazy", dependencies: ["Lock"]),
 
@@ -48,7 +51,6 @@ let package = Package(
 
     .target(name: "PancakeCore", dependencies: []),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore", "SnapshotTesting"]),
-    .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
     .target(name: "PancakeLogging", dependencies: ["PancakeCore"]),
     .testTarget(name: "PancakeLoggingTests", dependencies: ["PancakeLogging"]),
 
