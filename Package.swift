@@ -20,6 +20,7 @@ let package = Package(
 
     .library(name: "Box", targets: ["Box"]),
     .library(name: "Lazy", targets: ["Lazy"]),
+    .library(name: "Lock", targets: ["Lock"]),
     .library(name: "Weak", targets: ["Weak"]),
   ],
   dependencies: [
@@ -27,19 +28,25 @@ let package = Package(
       name: "SnapshotTesting",
       url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
       from: "1.8.1"
-    ),
+    )
   ],
   targets: [
     // Box
     .target(name: "Box"),
     .testTarget(name: "BoxTests", dependencies: ["Box"]),
+    
     // Lazy
     .target(name: "Lazy", dependencies: ["Lock"]),
+    
+    // Lock
+    .target(name: "Lock"),
+    
     .target(name: "PancakeCore", dependencies: []),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore", "SnapshotTesting"]),
     .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
     .target(name: "PancakeLogging", dependencies: ["PancakeCore"]),
     .testTarget(name: "PancakeLoggingTests", dependencies: ["PancakeLogging"]),
+    
     // Weak
     .target(name: "Weak"),
     .testTarget(name: "WeakTests", dependencies: ["Weak"]),

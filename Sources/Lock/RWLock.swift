@@ -1,10 +1,3 @@
-//
-//  File.swift
-//
-//
-//  Created by Guilherme Souza on 27/01/21.
-//
-
 import Foundation
 
 public final class RWLock {
