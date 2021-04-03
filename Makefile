@@ -7,9 +7,6 @@ format:
 		./Sources/ \
 		./Tests/ 
 
-xcode:
-	@bundle exec fastlane xcode
-
 build:
 	@swift build
 
