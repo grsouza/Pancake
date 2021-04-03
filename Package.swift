@@ -19,6 +19,7 @@ let package = Package(
     .library(name: "PancakeLogging", targets: ["PancakeLogging"]),
 
     .library(name: "Box", targets: ["Box"]),
+    .library(name: "Cache", targets: ["Cache"]),
     .library(name: "Lazy", targets: ["Lazy"]),
     .library(name: "Lock", targets: ["Lock"]),
     .library(name: "ThreadSafe", targets: ["ThreadSafe"]),
@@ -35,6 +36,9 @@ let package = Package(
     // Box
     .target(name: "Box"),
     .testTarget(name: "BoxTests", dependencies: ["Box"]),
+
+    // Cache
+    .target(name: "Cache"),
 
     // Lazy
     .target(name: "Lazy", dependencies: ["Lock"]),
