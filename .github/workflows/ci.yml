@@ -18,8 +18,6 @@ jobs:
           key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-
-      - name: Setup tools
-        run: make setuptools
       - name: Build
         run: make build
       - name: Run tests
