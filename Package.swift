@@ -35,13 +35,13 @@ let package = Package(
     // Box
     .target(name: "Box"),
     .testTarget(name: "BoxTests", dependencies: ["Box"]),
-    
+
     // Lazy
     .target(name: "Lazy", dependencies: ["Lock"]),
-    
+
     // Lock
     .target(name: "Lock"),
-    
+
     .target(name: "PancakeCore", dependencies: []),
     .testTarget(name: "PancakeCoreTests", dependencies: ["PancakeCore", "SnapshotTesting"]),
     .target(name: "PancakeKeychain", dependencies: ["PancakeCore"]),
