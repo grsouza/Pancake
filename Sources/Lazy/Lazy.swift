@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Lock
 
 /// Thread-safe lazily cached methods.
 ///
