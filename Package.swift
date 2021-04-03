@@ -17,6 +17,8 @@ let package = Package(
     .library(name: "PancakeCore", targets: ["PancakeCore"]),
     .library(name: "PancakeKeychain", targets: ["PancakeKeychain"]),
     .library(name: "PancakeLogging", targets: ["PancakeLogging"]),
+
+    .library(name: "Box", targets: ["Box"]),
     .library(name: "Lazy", targets: ["Lazy"]),
   ],
   dependencies: [
@@ -27,6 +29,9 @@ let package = Package(
     ),
   ],
   targets: [
+    // Box
+    .target(name: "Box"),
+    .testTarget(name: "BoxTests", dependencies: ["Box"]),
     // Lazy
     .target(name: "Lazy", dependencies: ["Lock"]),
     .target(name: "PancakeCore", dependencies: []),
